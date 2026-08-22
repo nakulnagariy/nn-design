@@ -203,24 +203,24 @@ be read and copied; they are not part of the published package.
 
 ### To npm
 
-The package name `nn-design` is currently unclaimed.
+Releases are driven by the `version` field in `package.json`. To ship one:
 
 ```bash
-npm login
-npm publish        # prepublishOnly runs typecheck + build first
+npm version patch          # or minor / major — bumps package.json
+git push
 ```
 
-Subsequent releases:
+Merging that to `main` runs `.github/workflows/release.yml`, which publishes to
+npm with [provenance](https://docs.npmjs.com/generating-provenance-statements).
 
-```bash
-npm version patch          # or minor / major
-git push --follow-tags
-```
+Merges that don't change the version are a no-op: the workflow checks npm
+first and skips, because npm permanently refuses to republish an existing
+version. So ordinary commits don't need any special handling.
 
-Pushing a `v*` tag triggers `.github/workflows/release.yml`, which publishes
-with [provenance](https://docs.npmjs.com/generating-provenance-statements). For
-that to work, add an **automation** access token from npm as a repository
-secret named `NPM_TOKEN`.
+**One-time setup:** add an npm **automation** token (npmjs.com → Access Tokens
+→ Generate New Token → Automation) as a repository secret named `NPM_TOKEN`,
+under Settings → Secrets and variables → Actions. A classic *publish* token is
+blocked by 2FA in CI and will fail.
 
 ### To GitHub Pages
 
@@ -230,6 +230,12 @@ secret named `NPM_TOKEN`.
 1. Push the repo to GitHub.
 2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
 3. Push to `main`, or run the workflow manually from the Actions tab.
+
+Step 2 has to happen before the first run, otherwise `configure-pages` fails
+with *"Get Pages site failed"* — a workflow cannot deploy to a Pages site that
+does not exist yet. The workflow passes `enablement: true`, which tries to
+create the site over the API, but that needs Pages to be permitted for the
+repository in the first place; the settings toggle is the reliable route.
 
 Storybook builds with relative asset paths, so it works from the project
 subpath (`https://<user>.github.io/nn-design/`) with no extra configuration.
