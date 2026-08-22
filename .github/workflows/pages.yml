@@ -26,7 +26,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - run: npm ci
@@ -34,7 +34,13 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
+      # `enablement: true` turns Pages on via the API if it is not already
+      # configured, so a fresh clone of this repo does not fail on the first
+      # run with "Get Pages site failed". Setting Settings -> Pages -> Source
+      # to "GitHub Actions" by hand does the same thing.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:

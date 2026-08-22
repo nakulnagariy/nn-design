@@ -1,10 +1,21 @@
 name: Publish to npm
 
-# Fires when you push a version tag, e.g.:
-#   npm version minor && git push --follow-tags
+# Publishes on every merge to main — but only when the version in package.json
+# is one npm has not seen before. npm permanently refuses to republish an
+# existing version, so without that check every merge that isn't a release
+# would fail the run.
+#
+# To cut a release: bump "version" in package.json, merge to main. Done.
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+  workflow_dispatch:
+
+# Two merges in quick succession would otherwise race to publish the same
+# version; the second would fail. Queue them instead.
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
 
 jobs:
   publish:
@@ -19,14 +30,32 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           registry-url: https://registry.npmjs.org
 
       - run: npm ci
 
-      # `prepublishOnly` runs typecheck + build, so a broken tag never ships.
+      - name: Is this version already on npm?
+        id: check
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Checking $NAME@$VERSION"
+
+          # `npm view` exits non-zero when the exact version does not exist,
+          # which is also the case for a package that has never been published.
+          if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::$NAME@$VERSION is already published — nothing to do."
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Publishing $NAME@$VERSION"
+          fi
+
+      # `prepublishOnly` runs typecheck + build, so a broken tree cannot ship.
       - name: Publish
+        if: steps.check.outputs.publish == 'true'
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
