@@ -1,0 +1,121 @@
+.nn-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid transparent;
+  border-radius: var(--nn-radius-xl);
+  font-family: var(--nn-font-sans);
+  color: var(--nn-color-text);
+  overflow: hidden;
+}
+
+/* ---- Variant --------------------------------------------------------------- */
+.nn-card--outlined {
+  background-color: var(--nn-color-surface-1);
+  border-color: var(--nn-color-border);
+}
+
+.nn-card--elevated {
+  background-color: var(--nn-color-surface-1);
+  border-color: var(--nn-color-border);
+  box-shadow: var(--nn-shadow-md);
+}
+
+.nn-card--filled {
+  background-color: var(--nn-color-surface-2);
+  border-color: transparent;
+}
+
+/* ---- Padding --------------------------------------------------------------
+   Applied to the sections rather than the card, so a `padding="none"` card can
+   still hold a full-bleed table or image while keeping its rounded corners.
+   --------------------------------------------------------------------------- */
+.nn-card--pad-none > * {
+  padding: 0;
+}
+
+.nn-card--pad-sm > .nn-card__header,
+.nn-card--pad-sm > .nn-card__body,
+.nn-card--pad-sm > .nn-card__footer {
+  padding: var(--nn-space-sm);
+}
+
+.nn-card--pad-md > .nn-card__header,
+.nn-card--pad-md > .nn-card__body,
+.nn-card--pad-md > .nn-card__footer {
+  padding: var(--nn-space-md);
+}
+
+.nn-card--pad-lg > .nn-card__header,
+.nn-card--pad-lg > .nn-card__body,
+.nn-card--pad-lg > .nn-card__footer {
+  padding: var(--nn-space-lg);
+}
+
+/* Collapse the doubled gap where a header sits directly above a body. */
+.nn-card__header + .nn-card__body {
+  padding-top: 0;
+}
+
+/* ---- Anatomy --------------------------------------------------------------- */
+.nn-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nn-space-md);
+}
+
+.nn-card__heading {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-3xs);
+}
+
+.nn-card__title {
+  margin: 0;
+  font-size: var(--nn-text-h4);
+  line-height: var(--nn-text-h4--line-height);
+  font-weight: var(--nn-weight-semibold);
+  color: var(--nn-color-text);
+}
+
+.nn-card__description {
+  margin: 0;
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  color: var(--nn-color-text-muted);
+}
+
+.nn-card__action {
+  flex-shrink: 0;
+}
+
+.nn-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.nn-card__footer {
+  border-top: 1px solid var(--nn-color-border);
+  margin-top: auto;
+}
+
+/* ---- Interactive ----------------------------------------------------------- */
+.nn-card--interactive {
+  cursor: pointer;
+  transition:
+    border-color var(--nn-duration-fast) var(--nn-ease),
+    box-shadow var(--nn-duration-fast) var(--nn-ease),
+    translate var(--nn-duration-fast) var(--nn-ease);
+}
+
+.nn-card--interactive:hover {
+  border-color: var(--nn-color-primary);
+  box-shadow: var(--nn-shadow-md);
+}
+
+.nn-card--interactive:focus-within {
+  border-color: var(--nn-color-focus);
+  box-shadow: var(--nn-focus-ring);
+}

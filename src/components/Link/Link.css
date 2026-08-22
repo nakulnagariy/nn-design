@@ -1,0 +1,54 @@
+.nn-link {
+  display: inline;
+  align-items: center;
+  gap: var(--nn-space-3xs);
+  border-radius: var(--nn-radius-xs);
+  font-family: inherit;
+  cursor: pointer;
+  transition: color var(--nn-duration-fast) var(--nn-ease);
+}
+
+.nn-link--primary {
+  color: var(--nn-color-primary);
+}
+.nn-link--primary:hover {
+  color: var(--nn-color-primary-hover);
+}
+
+.nn-link--inherit {
+  color: inherit;
+}
+.nn-link--inherit:hover {
+  color: var(--nn-color-primary);
+}
+
+.nn-link--muted {
+  color: var(--nn-color-text-muted);
+}
+.nn-link--muted:hover {
+  color: var(--nn-color-text);
+}
+
+.nn-link--underline-always {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.nn-link--underline-hover {
+  text-decoration: none;
+}
+.nn-link--underline-hover:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.nn-link--underline-none {
+  text-decoration: none;
+}
+
+.nn-link__external {
+  margin-inline-start: 0.15em;
+  font-size: 0.85em;
+  /* Keeps the arrow from being separated from the last word by a line break. */
+  white-space: nowrap;
+}

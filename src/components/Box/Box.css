@@ -1,0 +1,7 @@
+.nn-box {
+  min-width: 0;
+}
+
+.nn-box--bordered {
+  border: 1px solid var(--nn-color-border);
+}

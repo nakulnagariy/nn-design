@@ -1,0 +1,97 @@
+.nn-tabs {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nn-tabs__list {
+  display: flex;
+  align-items: center;
+  gap: var(--nn-space-2xs);
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.nn-tabs__list--full .nn-tabs__tab {
+  flex: 1;
+  justify-content: center;
+}
+
+.nn-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nn-space-2xs);
+  padding: var(--nn-space-xs) var(--nn-space-sm);
+  background: transparent;
+  border: 0;
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  font-weight: var(--nn-weight-medium);
+  color: var(--nn-color-text-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--nn-duration-fast) var(--nn-ease),
+    background-color var(--nn-duration-fast) var(--nn-ease),
+    border-color var(--nn-duration-fast) var(--nn-ease);
+}
+
+.nn-tabs__tab:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.nn-tabs__tab:hover:not(:disabled):not(.is-selected) {
+  color: var(--nn-color-text);
+}
+
+.nn-tabs__panel {
+  padding-top: var(--nn-space-md);
+  min-width: 0;
+}
+
+.nn-tabs__panel:focus-visible {
+  outline-offset: -2px;
+}
+
+/* ---- Variant: underline ---------------------------------------------------- */
+.nn-tabs--underline .nn-tabs__list {
+  gap: 0;
+  border-bottom: 1px solid var(--nn-color-border);
+}
+
+.nn-tabs--underline .nn-tabs__tab {
+  /* Transparent placeholder keeps the tab from shifting when selected. */
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  border-radius: var(--nn-radius-sm) var(--nn-radius-sm) 0 0;
+}
+
+.nn-tabs--underline .nn-tabs__tab.is-selected {
+  color: var(--nn-color-primary);
+  border-bottom-color: var(--nn-color-primary);
+}
+
+/* ---- Variant: pill --------------------------------------------------------- */
+.nn-tabs--pill .nn-tabs__list {
+  padding: var(--nn-space-3xs);
+  background-color: var(--nn-color-surface-3);
+  border-radius: var(--nn-radius-lg);
+}
+
+.nn-tabs--pill .nn-tabs__tab {
+  border-radius: var(--nn-radius-md);
+}
+
+.nn-tabs--pill .nn-tabs__tab.is-selected {
+  background-color: var(--nn-color-surface-1);
+  color: var(--nn-color-text);
+  box-shadow: var(--nn-shadow-sm);
+}
+
+.nn-tabs__badge {
+  display: inline-flex;
+  align-items: center;
+}

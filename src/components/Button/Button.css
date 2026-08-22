@@ -1,0 +1,123 @@
+.nn-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nn-space-xs);
+  border: 1px solid transparent;
+  border-radius: var(--nn-radius-md);
+  font-family: var(--nn-font-sans);
+  font-weight: var(--nn-weight-medium);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition:
+    background-color var(--nn-duration-fast) var(--nn-ease),
+    border-color var(--nn-duration-fast) var(--nn-ease),
+    color var(--nn-duration-fast) var(--nn-ease);
+}
+
+.nn-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.nn-button__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nn-button__label {
+  display: inline-block;
+}
+
+/* An empty label (icon-only button) should not leave a stray gap. */
+.nn-button__label:empty {
+  display: none;
+}
+
+/* ---- Size ---------------------------------------------------------------- */
+.nn-button--sm {
+  min-height: 2rem;
+  padding-inline: var(--nn-space-sm);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+}
+
+.nn-button--md {
+  min-height: 2.5rem;
+  padding-inline: var(--nn-space-md);
+  font-size: var(--nn-text-body);
+  line-height: var(--nn-text-body--line-height);
+}
+
+.nn-button--lg {
+  min-height: 3rem;
+  padding-inline: var(--nn-space-lg);
+  font-size: var(--nn-text-body-lg);
+  line-height: var(--nn-text-body-lg--line-height);
+}
+
+.nn-button--full {
+  width: 100%;
+}
+
+/* ---- Variant: primary ----------------------------------------------------- */
+.nn-button--primary {
+  background-color: var(--nn-color-primary);
+  color: var(--nn-color-primary-fg);
+}
+.nn-button--primary:hover:not(:disabled) {
+  background-color: var(--nn-color-primary-hover);
+}
+.nn-button--primary:active:not(:disabled) {
+  background-color: var(--nn-color-primary-active);
+}
+
+/* ---- Variant: secondary --------------------------------------------------- */
+.nn-button--secondary {
+  background-color: var(--nn-color-surface-1);
+  border-color: var(--nn-color-border-strong);
+  color: var(--nn-color-text);
+}
+.nn-button--secondary:hover:not(:disabled) {
+  background-color: var(--nn-color-surface-2);
+}
+.nn-button--secondary:active:not(:disabled) {
+  background-color: var(--nn-color-surface-3);
+}
+
+/* ---- Variant: ghost ------------------------------------------------------- */
+.nn-button--ghost {
+  background-color: transparent;
+  color: var(--nn-color-text);
+}
+.nn-button--ghost:hover:not(:disabled) {
+  background-color: var(--nn-color-surface-3);
+}
+.nn-button--ghost:active:not(:disabled) {
+  background-color: var(--nn-color-border);
+}
+
+/* ---- Variant: danger ------------------------------------------------------ */
+.nn-button--danger {
+  background-color: var(--nn-color-danger);
+  color: var(--nn-color-danger-fg);
+}
+.nn-button--danger:hover:not(:disabled) {
+  filter: brightness(0.93);
+}
+.nn-button--danger:active:not(:disabled) {
+  filter: brightness(0.86);
+}
+
+/* ---- Loading -------------------------------------------------------------- */
+.nn-button.is-loading {
+  cursor: progress;
+}
+
+.nn-button__spinner {
+  flex-shrink: 0;
+  color: currentColor;
+}

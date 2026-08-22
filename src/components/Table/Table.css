@@ -1,0 +1,76 @@
+.nn-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.nn-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  color: var(--nn-color-text);
+  text-align: start;
+}
+
+.nn-table__th {
+  font-weight: var(--nn-weight-semibold);
+  color: var(--nn-color-text-muted);
+  background-color: var(--nn-color-surface-2);
+  border-bottom: 1px solid var(--nn-color-border);
+  white-space: nowrap;
+}
+
+.nn-table__td {
+  border-bottom: 1px solid var(--nn-color-border);
+  vertical-align: middle;
+}
+
+/* Last row sits flush against the container edge. */
+.nn-table__body tr:last-child .nn-table__td {
+  border-bottom: 0;
+}
+
+/* ---- Density --------------------------------------------------------------- */
+.nn-table--compact .nn-table__th,
+.nn-table--compact .nn-table__td {
+  padding: var(--nn-space-xs) var(--nn-space-sm);
+}
+
+.nn-table--comfortable .nn-table__th,
+.nn-table--comfortable .nn-table__td {
+  padding: var(--nn-space-sm) var(--nn-space-md);
+}
+
+/* ---- Alignment ------------------------------------------------------------- */
+.nn-table__cell--start {
+  text-align: start;
+}
+.nn-table__cell--center {
+  text-align: center;
+}
+.nn-table__cell--end {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Modifiers ------------------------------------------------------------- */
+.nn-table--striped .nn-table__body tr:nth-child(even) {
+  background-color: var(--nn-color-surface-2);
+}
+
+.nn-table--hoverable .nn-table__row:hover {
+  background-color: var(--nn-color-surface-3);
+}
+
+.nn-table--sticky .nn-table__th {
+  position: sticky;
+  top: 0;
+  z-index: var(--nn-z-sticky);
+}
+
+.nn-table__empty {
+  padding: var(--nn-space-xl) var(--nn-space-md);
+  text-align: center;
+  color: var(--nn-color-text-subtle);
+}

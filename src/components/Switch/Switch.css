@@ -1,0 +1,49 @@
+.nn-switch {
+  appearance: none;
+  position: relative;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 1.25rem;
+  margin: 0;
+  background-color: var(--nn-color-border-strong);
+  border-radius: var(--nn-radius-full);
+  cursor: pointer;
+  transition: background-color var(--nn-duration-base) var(--nn-ease);
+}
+
+.nn-switch::after {
+  content: '';
+  position: absolute;
+  top: 0.125rem;
+  inset-inline-start: 0.125rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--nn-radius-full);
+  background-color: var(--nn-neutral-0);
+  box-shadow: var(--nn-shadow-sm);
+  transition: translate var(--nn-duration-base) var(--nn-ease);
+}
+
+.nn-switch:checked {
+  background-color: var(--nn-color-primary);
+}
+
+.nn-switch:checked::after {
+  translate: 1rem 0;
+}
+
+.nn-switch:hover:not(:disabled):not(:checked) {
+  background-color: var(--nn-color-text-subtle);
+}
+
+.nn-switch:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* The switch track is taller than a checkbox, so its description needs a
+   correspondingly wider indent to stay aligned with the label. */
+.nn-toggle--switch .nn-toggle__description,
+.nn-toggle--switch .nn-toggle__error {
+  padding-inline-start: calc(2.25rem + var(--nn-space-xs));
+}

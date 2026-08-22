@@ -1,0 +1,107 @@
+.nn-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nn-space-sm);
+  padding: var(--nn-space-md);
+  border: 1px solid transparent;
+  border-radius: var(--nn-radius-lg);
+  font-family: var(--nn-font-sans);
+}
+
+/* The glyph is a bare text node, so its colour has to be set on the icon
+   element itself — `currentColor` for the circle would make the two identical
+   and the glyph invisible. Each tone supplies the pair below. */
+.nn-alert__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+  border-radius: var(--nn-radius-full);
+  background-color: var(--nn-alert-accent);
+  color: var(--nn-alert-on-accent);
+  font-size: var(--nn-text-caption);
+  font-weight: var(--nn-weight-bold);
+  line-height: 1;
+}
+
+.nn-alert__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-3xs);
+}
+
+.nn-alert__title {
+  margin: 0;
+  font-size: var(--nn-text-body);
+  line-height: var(--nn-text-body--line-height);
+  font-weight: var(--nn-weight-semibold);
+}
+
+.nn-alert__content {
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+}
+
+.nn-alert__dismiss {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: -0.125rem -0.25rem 0 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--nn-radius-sm);
+  color: inherit;
+  font-size: var(--nn-text-body-lg);
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.nn-alert__dismiss:hover {
+  opacity: 1;
+  background-color: rgb(0 0 0 / 0.06);
+}
+
+/* ---- Tones ----------------------------------------------------------------
+   Each tone sets the surface trio plus the icon's accent/on-accent pair.
+   `on-accent` is white everywhere except warning, where amber is too light to
+   carry white text.
+   --------------------------------------------------------------------------- */
+.nn-alert--info {
+  --nn-alert-accent: var(--nn-color-info);
+  --nn-alert-on-accent: #ffffff;
+  background-color: var(--nn-color-info-subtle);
+  border-color: var(--nn-color-info);
+  color: var(--nn-color-info-subtle-fg);
+}
+
+.nn-alert--success {
+  --nn-alert-accent: var(--nn-color-success);
+  --nn-alert-on-accent: #ffffff;
+  background-color: var(--nn-color-success-subtle);
+  border-color: var(--nn-color-success);
+  color: var(--nn-color-success-subtle-fg);
+}
+
+.nn-alert--warning {
+  --nn-alert-accent: var(--nn-color-warning);
+  --nn-alert-on-accent: var(--nn-neutral-900);
+  background-color: var(--nn-color-warning-subtle);
+  border-color: var(--nn-color-warning);
+  color: var(--nn-color-warning-subtle-fg);
+}
+
+.nn-alert--danger {
+  --nn-alert-accent: var(--nn-color-danger);
+  --nn-alert-on-accent: #ffffff;
+  background-color: var(--nn-color-danger-subtle);
+  border-color: var(--nn-color-danger);
+  color: var(--nn-color-danger-subtle-fg);
+}

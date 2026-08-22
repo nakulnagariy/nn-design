@@ -1,0 +1,114 @@
+.nn-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nn-space-2xs);
+  border: 1px solid transparent;
+  border-radius: var(--nn-radius-full);
+  font-family: var(--nn-font-sans);
+  font-weight: var(--nn-weight-medium);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.nn-badge--sm {
+  padding-inline: var(--nn-space-xs);
+  min-height: 1.25rem;
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+}
+
+.nn-badge--md {
+  padding-inline: var(--nn-space-sm);
+  min-height: 1.5rem;
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+}
+
+.nn-badge__dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: var(--nn-radius-full);
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+/* ---- Subtle (default) ------------------------------------------------------ */
+.nn-badge--subtle.nn-badge--tone-neutral {
+  background-color: var(--nn-color-surface-3);
+  color: var(--nn-color-text-muted);
+}
+.nn-badge--subtle.nn-badge--tone-primary {
+  background-color: var(--nn-color-primary-subtle);
+  color: var(--nn-color-primary-subtle-fg);
+}
+.nn-badge--subtle.nn-badge--tone-success {
+  background-color: var(--nn-color-success-subtle);
+  color: var(--nn-color-success-subtle-fg);
+}
+.nn-badge--subtle.nn-badge--tone-warning {
+  background-color: var(--nn-color-warning-subtle);
+  color: var(--nn-color-warning-subtle-fg);
+}
+.nn-badge--subtle.nn-badge--tone-danger {
+  background-color: var(--nn-color-danger-subtle);
+  color: var(--nn-color-danger-subtle-fg);
+}
+.nn-badge--subtle.nn-badge--tone-info {
+  background-color: var(--nn-color-info-subtle);
+  color: var(--nn-color-info-subtle-fg);
+}
+
+/* ---- Solid ----------------------------------------------------------------- */
+.nn-badge--solid.nn-badge--tone-neutral {
+  background-color: var(--nn-color-text-muted);
+  color: var(--nn-color-text-inverted);
+}
+.nn-badge--solid.nn-badge--tone-primary {
+  background-color: var(--nn-color-primary);
+  color: var(--nn-color-primary-fg);
+}
+.nn-badge--solid.nn-badge--tone-success {
+  background-color: var(--nn-color-success);
+  color: var(--nn-color-success-fg);
+}
+.nn-badge--solid.nn-badge--tone-warning {
+  background-color: var(--nn-color-warning);
+  color: var(--nn-color-warning-fg);
+}
+.nn-badge--solid.nn-badge--tone-danger {
+  background-color: var(--nn-color-danger);
+  color: var(--nn-color-danger-fg);
+}
+.nn-badge--solid.nn-badge--tone-info {
+  background-color: var(--nn-color-info);
+  color: var(--nn-color-info-fg);
+}
+
+/* ---- Outline --------------------------------------------------------------- */
+.nn-badge--outline {
+  background-color: transparent;
+}
+.nn-badge--outline.nn-badge--tone-neutral {
+  border-color: var(--nn-color-border-strong);
+  color: var(--nn-color-text-muted);
+}
+.nn-badge--outline.nn-badge--tone-primary {
+  border-color: var(--nn-color-primary);
+  color: var(--nn-color-primary);
+}
+.nn-badge--outline.nn-badge--tone-success {
+  border-color: var(--nn-color-success);
+  color: var(--nn-color-success);
+}
+.nn-badge--outline.nn-badge--tone-warning {
+  border-color: var(--nn-color-warning);
+  color: var(--nn-color-warning-subtle-fg);
+}
+.nn-badge--outline.nn-badge--tone-danger {
+  border-color: var(--nn-color-danger);
+  color: var(--nn-color-danger);
+}
+.nn-badge--outline.nn-badge--tone-info {
+  border-color: var(--nn-color-info);
+  color: var(--nn-color-info);
+}

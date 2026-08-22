@@ -1,0 +1,160 @@
+.nn-cta {
+  padding-block: var(--nn-space-2xl);
+  font-family: var(--nn-font-sans);
+}
+
+@media (min-width: 64rem) {
+  .nn-cta {
+    padding-block: var(--nn-space-3xl);
+  }
+}
+
+.nn-cta__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--nn-space-lg);
+  text-align: center;
+}
+
+/* ---- Variant --------------------------------------------------------------- */
+.nn-cta--boxed .nn-cta__panel {
+  padding: var(--nn-space-2xl) var(--nn-space-lg);
+  border-radius: var(--nn-radius-2xl);
+  overflow: hidden;
+}
+
+@media (min-width: 64rem) {
+  .nn-cta--boxed .nn-cta__panel {
+    padding: var(--nn-space-3xl) var(--nn-space-2xl);
+  }
+}
+
+.nn-cta--split .nn-cta__panel {
+  padding: var(--nn-space-xl);
+  border-radius: var(--nn-radius-2xl);
+  text-align: start;
+  align-items: flex-start;
+}
+
+@media (min-width: 64rem) {
+  .nn-cta--split .nn-cta__panel {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nn-space-2xl);
+  }
+}
+
+/* ---- Tone ------------------------------------------------------------------ */
+.nn-cta__panel--default {
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border);
+  color: var(--nn-color-text);
+}
+
+.nn-cta__panel--muted {
+  background-color: var(--nn-color-surface-2);
+  border: 1px solid var(--nn-color-border);
+  color: var(--nn-color-text);
+}
+
+.nn-cta__panel--primary {
+  background-color: var(--nn-color-primary);
+  color: var(--nn-color-primary-fg);
+}
+
+.nn-cta__panel--inverted {
+  background-color: var(--nn-neutral-900);
+  color: var(--nn-neutral-50);
+}
+
+.nn-cta__panel--gradient {
+  background-image: linear-gradient(
+    120deg,
+    var(--nn-indigo-700) 0%,
+    var(--nn-indigo-500) 55%,
+    var(--nn-sky-500) 100%
+  );
+  color: #ffffff;
+}
+
+/* The plain variant paints the band itself rather than an inset panel. */
+.nn-cta--plain .nn-cta__panel {
+  border: 0;
+  background: none;
+  color: inherit;
+}
+
+.nn-cta--plain .nn-cta__panel--primary {
+  color: var(--nn-color-primary-fg);
+}
+
+/* ---- Contents -------------------------------------------------------------- */
+.nn-cta__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-sm);
+  max-width: 42rem;
+  min-width: 0;
+}
+
+.nn-cta__eyebrow {
+  margin: 0;
+  font-size: var(--nn-text-sm);
+  font-weight: var(--nn-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.nn-cta__title {
+  margin: 0;
+  font-size: var(--nn-text-h2);
+  line-height: var(--nn-text-h2--line-height);
+  font-weight: var(--nn-weight-bold);
+  letter-spacing: -0.02em;
+  color: inherit;
+  text-wrap: balance;
+}
+
+@media (min-width: 64rem) {
+  .nn-cta__title {
+    font-size: var(--nn-text-h1);
+    line-height: var(--nn-text-h1--line-height);
+  }
+}
+
+.nn-cta__description {
+  margin: 0;
+  font-size: var(--nn-text-body-lg);
+  line-height: var(--nn-text-body-lg--line-height);
+  opacity: 0.88;
+  text-wrap: pretty;
+}
+
+.nn-cta__tail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--nn-space-xs);
+  flex-shrink: 0;
+}
+
+.nn-cta--split .nn-cta__tail {
+  align-items: flex-start;
+}
+
+.nn-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nn-space-sm);
+  justify-content: center;
+}
+
+.nn-cta__note {
+  margin: 0;
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  opacity: 0.75;
+}

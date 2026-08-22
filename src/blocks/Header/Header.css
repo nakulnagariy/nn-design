@@ -1,0 +1,225 @@
+.nn-header {
+  width: 100%;
+  background-color: var(--nn-color-surface-1);
+  font-family: var(--nn-font-sans);
+  color: var(--nn-color-text);
+  transition:
+    background-color var(--nn-duration-base) var(--nn-ease),
+    border-color var(--nn-duration-base) var(--nn-ease),
+    box-shadow var(--nn-duration-base) var(--nn-ease);
+}
+
+.nn-header--bordered {
+  border-bottom: 1px solid var(--nn-color-border);
+}
+
+.nn-header--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--nn-z-sticky);
+}
+
+/* Transparent until scrolled. `is-scrolled` is added by the component. */
+.nn-header--transparent {
+  background-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.nn-header--transparent.is-scrolled {
+  background-color: color-mix(in srgb, var(--nn-color-surface-1) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--nn-color-border);
+  box-shadow: var(--nn-shadow-sm);
+}
+
+/* An open mobile panel needs a solid backdrop even before the page scrolls. */
+.nn-header--transparent.is-menu-open {
+  background-color: var(--nn-color-surface-1);
+  border-bottom-color: var(--nn-color-border);
+}
+
+.nn-header__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--nn-space-lg);
+  min-height: 4rem;
+}
+
+.nn-header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: var(--nn-text-body-lg);
+  font-weight: var(--nn-weight-bold);
+  color: inherit;
+}
+
+.nn-header__logo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---- Inline nav (hidden on narrow screens) --------------------------------- */
+.nn-header__nav {
+  display: none;
+  align-items: center;
+  gap: var(--nn-space-2xs);
+  flex: 1;
+}
+
+.nn-header__link {
+  padding: var(--nn-space-2xs) var(--nn-space-sm);
+  border-radius: var(--nn-radius-md);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  font-weight: var(--nn-weight-medium);
+  color: var(--nn-color-text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color var(--nn-duration-fast) var(--nn-ease),
+    background-color var(--nn-duration-fast) var(--nn-ease);
+}
+
+.nn-header__link:hover {
+  color: var(--nn-color-text);
+  background-color: var(--nn-color-surface-3);
+}
+
+.nn-header__link.is-active {
+  color: var(--nn-color-primary);
+}
+
+.nn-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--nn-space-xs);
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
+
+/* ---- Hamburger ------------------------------------------------------------- */
+.nn-header__toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--nn-color-border);
+  border-radius: var(--nn-radius-md);
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Three lines drawn from one element: the bar itself plus its two pseudos. */
+.nn-header__bars,
+.nn-header__bars::before,
+.nn-header__bars::after {
+  display: block;
+  width: 1rem;
+  height: 1.5px;
+  background-color: currentColor;
+  border-radius: var(--nn-radius-full);
+  transition:
+    translate var(--nn-duration-base) var(--nn-ease),
+    rotate var(--nn-duration-base) var(--nn-ease),
+    opacity var(--nn-duration-fast) var(--nn-ease);
+}
+
+.nn-header__bars {
+  position: relative;
+}
+
+.nn-header__bars::before,
+.nn-header__bars::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+}
+
+.nn-header__bars::before {
+  translate: 0 -0.3125rem;
+}
+
+.nn-header__bars::after {
+  translate: 0 0.3125rem;
+}
+
+.is-menu-open .nn-header__bars {
+  background-color: transparent;
+}
+
+.is-menu-open .nn-header__bars::before {
+  translate: 0 0;
+  rotate: 45deg;
+}
+
+.is-menu-open .nn-header__bars::after {
+  translate: 0 0;
+  rotate: -45deg;
+}
+
+/* ---- Mobile panel ---------------------------------------------------------- */
+.nn-header__panel {
+  border-top: 1px solid var(--nn-color-border);
+  background-color: var(--nn-color-surface-1);
+  padding-block: var(--nn-space-sm);
+}
+
+.nn-header__panel-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-3xs);
+}
+
+.nn-header__panel-link {
+  padding: var(--nn-space-sm);
+  border-radius: var(--nn-radius-md);
+  font-size: var(--nn-text-body);
+  font-weight: var(--nn-weight-medium);
+  color: var(--nn-color-text);
+  text-decoration: none;
+}
+
+.nn-header__panel-link:hover {
+  background-color: var(--nn-color-surface-2);
+}
+
+.nn-header__panel-link.is-active {
+  color: var(--nn-color-primary);
+  background-color: var(--nn-color-primary-subtle);
+}
+
+/* ---- Breakpoint ------------------------------------------------------------ */
+@media (min-width: 64rem) {
+  .nn-header__nav {
+    display: flex;
+  }
+
+  .nn-header__toggle {
+    display: none;
+  }
+
+  /* The panel is the small-screen affordance only; force it away even if the
+     toggle was left open when the viewport grew. */
+  .nn-header__panel {
+    display: none;
+  }
+
+  /* `centered` pushes nav to the middle by giving the flanking cells equal
+     flex, so the nav stays optically centred regardless of logo width. */
+  .nn-header--centered .nn-header__logo,
+  .nn-header--centered .nn-header__actions {
+    flex: 1;
+  }
+
+  .nn-header--centered .nn-header__nav {
+    flex: 0 0 auto;
+    justify-content: center;
+  }
+
+  .nn-header--centered .nn-header__actions {
+    justify-content: flex-end;
+  }
+}

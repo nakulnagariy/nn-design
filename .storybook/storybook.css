@@ -1,0 +1,11 @@
+/* Storybook-only stylesheet.
+   Pulls in Tailwind (so utility classes resolve in stories) followed by the
+   design system itself. Consumers of the package do the equivalent in their
+   own app entry. */
+@import 'tailwindcss';
+@import '../src/styles/index.css';
+
+/* Give every story a themed surface to sit on rather than Storybook's white. */
+.sb-show-main {
+  background-color: var(--nn-color-surface-1);
+}

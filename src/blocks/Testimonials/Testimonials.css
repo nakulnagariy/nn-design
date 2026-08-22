@@ -1,0 +1,102 @@
+.nn-testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-md);
+  height: 100%;
+  margin: 0;
+  padding: var(--nn-space-lg);
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border);
+  border-radius: var(--nn-radius-xl);
+  font-family: var(--nn-font-sans);
+}
+
+.nn-testimonial__quote {
+  margin: 0;
+  font-size: var(--nn-text-body);
+  line-height: var(--nn-text-body--line-height);
+  color: var(--nn-color-text);
+  text-wrap: pretty;
+}
+
+/* Typographic quotation marks, added in CSS so the prop stays plain text. */
+.nn-testimonial__quote::before {
+  content: '\201C';
+}
+.nn-testimonial__quote::after {
+  content: '\201D';
+}
+
+.nn-testimonial__rating {
+  display: flex;
+  gap: 0.1em;
+  font-size: var(--nn-text-sm);
+  line-height: 1;
+  color: var(--nn-color-warning);
+  letter-spacing: 0.05em;
+}
+
+.nn-testimonial__rating-empty {
+  color: var(--nn-color-border-strong);
+}
+
+.nn-testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: var(--nn-space-sm);
+  /* Pins attribution to the bottom so cards of differing quote length still
+     align their author rows. */
+  margin-top: auto;
+  padding-top: var(--nn-space-xs);
+}
+
+.nn-testimonial__author-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nn-testimonial__author-name {
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  font-weight: var(--nn-weight-semibold);
+  color: var(--nn-color-text);
+}
+
+.nn-testimonial__author-meta {
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  color: var(--nn-color-text-subtle);
+}
+
+/* ---- Feature variant ------------------------------------------------------- */
+.nn-testimonial--lead {
+  align-items: center;
+  text-align: center;
+  padding: var(--nn-space-2xl) var(--nn-space-lg);
+  background-color: var(--nn-color-primary-subtle);
+  border-color: transparent;
+}
+
+.nn-testimonial--lead .nn-testimonial__quote {
+  font-size: var(--nn-text-h3);
+  line-height: var(--nn-text-h3--line-height);
+  font-weight: var(--nn-weight-medium);
+  max-width: 44rem;
+  text-wrap: balance;
+}
+
+@media (min-width: 64rem) {
+  .nn-testimonial--lead .nn-testimonial__quote {
+    font-size: var(--nn-text-h2);
+    line-height: var(--nn-text-h2--line-height);
+  }
+}
+
+.nn-testimonial--lead .nn-testimonial__author {
+  margin-top: 0;
+}
+
+.nn-testimonials__rest {
+  margin-top: var(--nn-space-lg);
+}

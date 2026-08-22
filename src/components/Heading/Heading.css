@@ -1,0 +1,37 @@
+.nn-heading {
+  margin: 0;
+  font-family: var(--nn-font-sans);
+  font-weight: var(--nn-weight-semibold);
+  color: var(--nn-color-text);
+  text-wrap: balance;
+}
+
+.nn-heading--display {
+  font-size: var(--nn-text-display);
+  line-height: var(--nn-text-display--line-height);
+  font-weight: var(--nn-weight-bold);
+  letter-spacing: -0.02em;
+}
+
+.nn-heading--h1 {
+  font-size: var(--nn-text-h1);
+  line-height: var(--nn-text-h1--line-height);
+  font-weight: var(--nn-weight-bold);
+  letter-spacing: -0.015em;
+}
+
+.nn-heading--h2 {
+  font-size: var(--nn-text-h2);
+  line-height: var(--nn-text-h2--line-height);
+  letter-spacing: -0.01em;
+}
+
+.nn-heading--h3 {
+  font-size: var(--nn-text-h3);
+  line-height: var(--nn-text-h3--line-height);
+}
+
+.nn-heading--h4 {
+  font-size: var(--nn-text-h4);
+  line-height: var(--nn-text-h4--line-height);
+}

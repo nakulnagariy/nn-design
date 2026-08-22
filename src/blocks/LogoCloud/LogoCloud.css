@@ -1,0 +1,97 @@
+.nn-logos {
+  width: 100%;
+}
+
+.nn-logos__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nn-space-xl) var(--nn-space-2xl);
+}
+
+.nn-logos__logo {
+  display: flex;
+  align-items: center;
+  height: 1.75rem;
+  color: var(--nn-color-text-muted);
+  font-size: var(--nn-text-body-lg);
+  font-weight: var(--nn-weight-bold);
+  letter-spacing: -0.01em;
+  /* Dimmed so the logos read as texture, not as competing brand colour. */
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition:
+    filter var(--nn-duration-base) var(--nn-ease),
+    opacity var(--nn-duration-base) var(--nn-ease);
+}
+
+.nn-logos__logo:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.nn-logos__logo img,
+.nn-logos__logo svg {
+  max-height: 100%;
+  width: auto;
+  display: block;
+}
+
+.nn-logos--vivid .nn-logos__logo {
+  filter: none;
+  opacity: 1;
+}
+
+/* ---- Marquee ---------------------------------------------------------------
+   Two identical rows scroll left by exactly half the track width, so the moment
+   the first row leaves the viewport the second is in the position the first
+   started from — an invisible seam.
+   --------------------------------------------------------------------------- */
+.nn-logos--marquee {
+  overflow: hidden;
+  /* Fade both edges so logos enter and leave rather than popping. */
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.nn-logos--marquee .nn-logos__track {
+  display: flex;
+  width: max-content;
+  animation: nn-marquee var(--nn-marquee-duration, 30s) linear infinite;
+}
+
+.nn-logos--marquee .nn-logos__row {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding-inline-end: var(--nn-space-2xl);
+}
+
+.nn-logos--marquee:hover .nn-logos__track {
+  animation-play-state: paused;
+}
+
+@keyframes nn-marquee {
+  to {
+    translate: -50% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-logos--marquee .nn-logos__track {
+    animation: none;
+  }
+
+  /* With the animation off, the duplicated row would just be a repeat. */
+  .nn-logos--marquee .nn-logos__row[aria-hidden='true'] {
+    display: none;
+  }
+
+  .nn-logos--marquee {
+    mask-image: none;
+  }
+
+  .nn-logos--marquee .nn-logos__row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

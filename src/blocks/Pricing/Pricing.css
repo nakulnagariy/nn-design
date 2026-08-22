@@ -1,0 +1,159 @@
+.nn-pricing__toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--nn-space-xl);
+}
+
+.nn-pricing__grid {
+  display: grid;
+  gap: var(--nn-space-lg);
+  align-items: stretch;
+}
+
+@media (min-width: 48rem) {
+  .nn-pricing__grid[data-count='2'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .nn-pricing__grid[data-count='3'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .nn-pricing__grid[data-count='4'] {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.nn-pricing__tier {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-md);
+  height: 100%;
+  padding: var(--nn-space-lg);
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border);
+  border-radius: var(--nn-radius-2xl);
+  font-family: var(--nn-font-sans);
+}
+
+.nn-pricing__tier.is-featured {
+  border-color: var(--nn-color-primary);
+  box-shadow: var(--nn-shadow-lg);
+}
+
+@media (min-width: 64rem) {
+  /* Lift the recommended plan out of the row. */
+  .nn-pricing__tier.is-featured {
+    scale: 1.03;
+    z-index: 1;
+  }
+}
+
+.nn-pricing__badge {
+  position: absolute;
+  top: 0;
+  inset-inline-end: var(--nn-space-lg);
+  translate: 0 -50%;
+  padding: var(--nn-space-3xs) var(--nn-space-sm);
+  border-radius: var(--nn-radius-full);
+  background-color: var(--nn-color-primary);
+  color: var(--nn-color-primary-fg);
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  font-weight: var(--nn-weight-semibold);
+  white-space: nowrap;
+}
+
+.nn-pricing__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-3xs);
+}
+
+.nn-pricing__name {
+  margin: 0;
+  font-size: var(--nn-text-h4);
+  line-height: var(--nn-text-h4--line-height);
+  font-weight: var(--nn-weight-semibold);
+  color: var(--nn-color-text);
+}
+
+.nn-pricing__description {
+  margin: 0;
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  color: var(--nn-color-text-muted);
+}
+
+.nn-pricing__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--nn-space-2xs);
+  margin: 0;
+}
+
+.nn-pricing__amount {
+  font-size: var(--nn-text-display);
+  line-height: 1;
+  font-weight: var(--nn-weight-bold);
+  letter-spacing: -0.03em;
+  color: var(--nn-color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.nn-pricing__period {
+  font-size: var(--nn-text-sm);
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-pricing__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-xs);
+  margin: 0;
+  padding: 0;
+  padding-top: var(--nn-space-xs);
+  border-top: 1px solid var(--nn-color-border);
+  list-style: none;
+  /* Features sit last in the card and push nothing below them, so the button
+     above stays vertically aligned across tiers of differing length. */
+  margin-top: auto;
+}
+
+.nn-pricing__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nn-space-xs);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  color: var(--nn-color-text-muted);
+}
+
+/* Tick drawn with a rotated border — no icon asset. */
+.nn-pricing__check {
+  flex-shrink: 0;
+  width: 0.35rem;
+  height: 0.65rem;
+  margin-top: 0.3rem;
+  border-inline-end: 2px solid var(--nn-color-success);
+  border-block-end: 2px solid var(--nn-color-success);
+  rotate: 45deg;
+}
+
+.nn-pricing__action {
+  display: flex;
+}
+
+.nn-pricing__action > * {
+  flex: 1;
+}
+
+.nn-pricing__note {
+  margin: var(--nn-space-lg) 0 0;
+  text-align: center;
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  color: var(--nn-color-text-subtle);
+}

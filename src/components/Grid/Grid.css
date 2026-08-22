@@ -1,0 +1,53 @@
+.nn-grid {
+  display: grid;
+  min-width: 0;
+}
+
+/* Fixed-column mode steps down at two breakpoints: everything collapses to a
+   single column on phones, and wider grids pass through an intermediate count
+   so a 4-up never jumps straight from 4 to 1. */
+.nn-grid--1 {
+  grid-template-columns: 1fr;
+}
+
+.nn-grid--2,
+.nn-grid--3,
+.nn-grid--4,
+.nn-grid--5,
+.nn-grid--6,
+.nn-grid--12 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 40rem) {
+  .nn-grid--2,
+  .nn-grid--3,
+  .nn-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .nn-grid--5,
+  .nn-grid--6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .nn-grid--12 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .nn-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .nn-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .nn-grid--5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .nn-grid--6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .nn-grid--12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}

@@ -1,0 +1,99 @@
+/* Shared form-field scaffolding — label, hint, error. Used by Input and Select. */
+
+.nn-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-2xs);
+  min-width: 0;
+}
+
+.nn-field__label {
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  font-weight: var(--nn-weight-medium);
+  color: var(--nn-color-text);
+}
+
+.nn-field__required {
+  margin-inline-start: var(--nn-space-3xs);
+  color: var(--nn-color-danger);
+}
+
+.nn-field__hint {
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-field__error {
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  color: var(--nn-color-danger);
+}
+
+/* Shared control surface for text-like inputs and selects. */
+.nn-control {
+  width: 100%;
+  min-width: 0;
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border-strong);
+  border-radius: var(--nn-radius-md);
+  font-family: var(--nn-font-sans);
+  color: var(--nn-color-text);
+  transition:
+    border-color var(--nn-duration-fast) var(--nn-ease),
+    box-shadow var(--nn-duration-fast) var(--nn-ease);
+}
+
+.nn-control::placeholder {
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-control:hover:not(:disabled):not(:focus) {
+  border-color: var(--nn-color-text-subtle);
+}
+
+.nn-control:focus {
+  outline: none;
+  border-color: var(--nn-color-focus);
+  box-shadow: var(--nn-focus-ring);
+}
+
+.nn-control:disabled {
+  cursor: not-allowed;
+  background-color: var(--nn-color-surface-2);
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-field--invalid .nn-control {
+  border-color: var(--nn-color-danger);
+}
+
+.nn-field--invalid .nn-control:focus {
+  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.3);
+}
+
+/* ---- Control sizes -------------------------------------------------------- */
+.nn-control--sm {
+  min-height: 2rem;
+  padding-inline: var(--nn-space-xs);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+}
+
+.nn-control--md {
+  min-height: 2.5rem;
+  padding-inline: var(--nn-space-sm);
+  font-size: var(--nn-text-body);
+  line-height: var(--nn-text-body--line-height);
+}
+
+.nn-control--lg {
+  min-height: 3rem;
+  padding-inline: var(--nn-space-md);
+  font-size: var(--nn-text-body-lg);
+  line-height: var(--nn-text-body-lg--line-height);
+}

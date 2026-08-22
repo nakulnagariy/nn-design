@@ -1,0 +1,119 @@
+.nn-modal {
+  /* The dialog element itself is the click-catching backdrop area. */
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: 100vw;
+  max-height: 100dvh;
+  width: 100%;
+  color: var(--nn-color-text);
+  font-family: var(--nn-font-sans);
+}
+
+.nn-modal::backdrop {
+  background-color: var(--nn-color-overlay);
+}
+
+.nn-modal[open] {
+  display: grid;
+  place-items: center;
+  padding: var(--nn-space-md);
+}
+
+/* `inset: 0` plus auto margins keeps the dialog centred in the viewport
+   rather than pinned to the top, which is the UA default. */
+.nn-modal {
+  inset: 0;
+  height: 100%;
+}
+
+.nn-modal__panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-md);
+  max-height: calc(100dvh - var(--nn-space-xl));
+  padding: var(--nn-space-lg);
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border);
+  border-radius: var(--nn-radius-xl);
+  box-shadow: var(--nn-shadow-lg);
+  text-align: start;
+}
+
+.nn-modal--sm .nn-modal__panel {
+  max-width: 24rem;
+}
+.nn-modal--md .nn-modal__panel {
+  max-width: 32rem;
+}
+.nn-modal--lg .nn-modal__panel {
+  max-width: 48rem;
+}
+
+.nn-modal__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nn-space-md);
+}
+
+.nn-modal__heading {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-3xs);
+}
+
+.nn-modal__title {
+  margin: 0;
+  font-size: var(--nn-text-h3);
+  line-height: var(--nn-text-h3--line-height);
+  font-weight: var(--nn-weight-semibold);
+  color: var(--nn-color-text);
+}
+
+.nn-modal__description {
+  margin: 0;
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  color: var(--nn-color-text-muted);
+}
+
+.nn-modal__close {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin: -0.25rem -0.25rem 0 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--nn-radius-sm);
+  color: var(--nn-color-text-muted);
+  font-size: var(--nn-text-h4);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.nn-modal__close:hover {
+  background-color: var(--nn-color-surface-3);
+  color: var(--nn-color-text);
+}
+
+.nn-modal__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-size: var(--nn-text-body);
+  line-height: var(--nn-text-body--line-height);
+  color: var(--nn-color-text);
+}
+
+.nn-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--nn-space-xs);
+  flex-wrap: wrap;
+}

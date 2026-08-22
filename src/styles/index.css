@@ -1,0 +1,66 @@
+/* ==========================================================================
+   NN Design System — complete stylesheet.
+
+   This is the single entry point consumers import:
+       import 'nn-design/styles.css'
+
+   postcss-import flattens this graph at build time, so dist/styles.css is one
+   self-contained file with no remaining @import statements.
+   ========================================================================== */
+
+/* Foundations — must come first; everything below references these tokens. */
+@import './tokens.css';
+@import './base.css';
+
+/* Shared internals used by more than one component. */
+@import '../internal/field.css';
+@import '../internal/toggle.css';
+
+/* Primitives */
+@import '../components/Box/Box.css';
+@import '../components/Stack/Stack.css';
+@import '../components/Container/Container.css';
+@import '../components/Grid/Grid.css';
+@import '../components/Text/Text.css';
+@import '../components/Heading/Heading.css';
+@import '../components/Divider/Divider.css';
+@import '../components/Link/Link.css';
+
+/* Form controls */
+@import '../components/Button/Button.css';
+@import '../components/Input/Input.css';
+@import '../components/Select/Select.css';
+@import '../components/Switch/Switch.css';
+
+/* Feedback */
+@import '../components/Alert/Alert.css';
+@import '../components/Badge/Badge.css';
+@import '../components/Spinner/Spinner.css';
+@import '../components/Tooltip/Tooltip.css';
+@import '../components/Modal/Modal.css';
+
+/* Data display */
+@import '../components/Card/Card.css';
+@import '../components/Table/Table.css';
+@import '../components/Tabs/Tabs.css';
+@import '../components/Accordion/Accordion.css';
+@import '../components/Dropdown/Dropdown.css';
+@import '../components/Avatar/Avatar.css';
+
+/* Motion */
+@import '../components/Reveal/Reveal.css';
+
+/* Page blocks — composed sections. Loaded after components because several
+   of them override component styles when nested in a coloured section. */
+@import '../blocks/Section/Section.css';
+@import '../blocks/Header/Header.css';
+@import '../blocks/Hero/Hero.css';
+@import '../blocks/Features/Features.css';
+@import '../blocks/Stats/Stats.css';
+@import '../blocks/Pricing/Pricing.css';
+@import '../blocks/Testimonials/Testimonials.css';
+@import '../blocks/LogoCloud/LogoCloud.css';
+@import '../blocks/FAQ/FAQ.css';
+@import '../blocks/Newsletter/Newsletter.css';
+@import '../blocks/CTA/CTA.css';
+@import '../blocks/Footer/Footer.css';

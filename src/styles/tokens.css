@@ -1,0 +1,346 @@
+/* ==========================================================================
+   NN Design System — design tokens
+   --------------------------------------------------------------------------
+   Two layers, on purpose:
+
+   1. `:root { --nn-* }`  — plain CSS custom properties. These always work,
+      with or without Tailwind, and they are what component CSS references.
+   2. `@theme inline`     — re-exports the same values into Tailwind v4's theme
+      namespaces, which is what generates the utility vocabulary
+      (bg-surface-1, gap-md, rounded-lg, text-body, ...).
+
+   `inline` matters: it makes Tailwind emit `var(--nn-color-primary)` into the
+   utility rather than a frozen copy of the value, so utilities follow the
+   active theme when `--nn-*` is reassigned in dark mode.
+
+   Dark mode is applied three ways so it works in every host:
+     - system default            -> @media (prefers-color-scheme: dark)
+     - explicit opt-in           -> [data-nn-theme="dark"]
+     - explicit opt-out of dark  -> [data-nn-theme="light"] wins over system
+   ========================================================================== */
+
+:root {
+  /* ---- Palette (raw ramps; prefer the semantic tokens below) ------------ */
+  --nn-neutral-0: #ffffff;
+  --nn-neutral-50: #f8fafc;
+  --nn-neutral-100: #f1f5f9;
+  --nn-neutral-200: #e2e8f0;
+  --nn-neutral-300: #cbd5e1;
+  --nn-neutral-400: #94a3b8;
+  --nn-neutral-500: #64748b;
+  --nn-neutral-600: #475569;
+  --nn-neutral-700: #334155;
+  --nn-neutral-800: #1e293b;
+  --nn-neutral-900: #0f172a;
+  --nn-neutral-950: #020617;
+
+  --nn-indigo-50: #eef2ff;
+  --nn-indigo-100: #e0e7ff;
+  --nn-indigo-200: #c7d2fe;
+  --nn-indigo-300: #a5b4fc;
+  --nn-indigo-400: #818cf8;
+  --nn-indigo-500: #6366f1;
+  --nn-indigo-600: #4f46e5;
+  --nn-indigo-700: #4338ca;
+  --nn-indigo-800: #3730a3;
+  --nn-indigo-900: #312e81;
+  --nn-indigo-950: #1e1b4b;
+
+  --nn-emerald-50: #ecfdf5;
+  --nn-emerald-500: #10b981;
+  --nn-emerald-600: #059669;
+  --nn-emerald-700: #047857;
+  --nn-emerald-950: #022c22;
+
+  --nn-amber-50: #fffbeb;
+  --nn-amber-500: #f59e0b;
+  --nn-amber-600: #d97706;
+  --nn-amber-700: #b45309;
+  --nn-amber-950: #451a03;
+
+  --nn-red-50: #fef2f2;
+  --nn-red-500: #ef4444;
+  --nn-red-600: #dc2626;
+  --nn-red-700: #b91c1c;
+  --nn-red-950: #450a0a;
+
+  --nn-sky-50: #f0f9ff;
+  --nn-sky-500: #0ea5e9;
+  --nn-sky-600: #0284c7;
+  --nn-sky-700: #0369a1;
+  --nn-sky-950: #082f49;
+
+  /* ---- Semantic: surfaces & lines --------------------------------------- */
+  --nn-color-surface-1: var(--nn-neutral-0);
+  --nn-color-surface-2: var(--nn-neutral-50);
+  --nn-color-surface-3: var(--nn-neutral-100);
+  --nn-color-border: var(--nn-neutral-200);
+  --nn-color-border-strong: var(--nn-neutral-300);
+  --nn-color-overlay: rgb(2 6 23 / 0.55);
+
+  /* ---- Semantic: text ---------------------------------------------------- */
+  --nn-color-text: var(--nn-neutral-900);
+  --nn-color-text-muted: var(--nn-neutral-600);
+  --nn-color-text-subtle: var(--nn-neutral-500);
+  --nn-color-text-inverted: var(--nn-neutral-0);
+
+  /* ---- Semantic: primary -------------------------------------------------- */
+  --nn-color-primary: var(--nn-indigo-600);
+  --nn-color-primary-hover: var(--nn-indigo-700);
+  --nn-color-primary-active: var(--nn-indigo-800);
+  --nn-color-primary-fg: var(--nn-neutral-0);
+  --nn-color-primary-subtle: var(--nn-indigo-50);
+  --nn-color-primary-subtle-fg: var(--nn-indigo-800);
+
+  /* ---- Semantic: status --------------------------------------------------- */
+  --nn-color-success: var(--nn-emerald-600);
+  --nn-color-success-fg: var(--nn-neutral-0);
+  --nn-color-success-subtle: var(--nn-emerald-50);
+  --nn-color-success-subtle-fg: var(--nn-emerald-700);
+
+  --nn-color-warning: var(--nn-amber-500);
+  --nn-color-warning-fg: var(--nn-neutral-900);
+  --nn-color-warning-subtle: var(--nn-amber-50);
+  --nn-color-warning-subtle-fg: var(--nn-amber-700);
+
+  --nn-color-danger: var(--nn-red-600);
+  --nn-color-danger-fg: var(--nn-neutral-0);
+  --nn-color-danger-subtle: var(--nn-red-50);
+  --nn-color-danger-subtle-fg: var(--nn-red-700);
+
+  --nn-color-info: var(--nn-sky-600);
+  --nn-color-info-fg: var(--nn-neutral-0);
+  --nn-color-info-subtle: var(--nn-sky-50);
+  --nn-color-info-subtle-fg: var(--nn-sky-700);
+
+  /* ---- Focus -------------------------------------------------------------- */
+  --nn-color-focus: var(--nn-indigo-500);
+  --nn-focus-ring: 0 0 0 3px rgb(99 102 241 / 0.35);
+
+  /* ---- Spacing ------------------------------------------------------------ */
+  --nn-space-0: 0rem;
+  --nn-space-3xs: 0.125rem;
+  --nn-space-2xs: 0.25rem;
+  --nn-space-xs: 0.5rem;
+  --nn-space-sm: 0.75rem;
+  --nn-space-md: 1rem;
+  --nn-space-lg: 1.5rem;
+  --nn-space-xl: 2rem;
+  --nn-space-2xl: 3rem;
+  --nn-space-3xl: 4rem;
+  --nn-space-container: 2rem;
+  --nn-space-section: 4rem;
+
+  /* ---- Radius ------------------------------------------------------------- */
+  --nn-radius-xs: 0.25rem;
+  --nn-radius-sm: 0.375rem;
+  --nn-radius-md: 0.5rem;
+  --nn-radius-lg: 0.75rem;
+  --nn-radius-xl: 1rem;
+  --nn-radius-2xl: 1.5rem;
+  --nn-radius-full: 9999px;
+
+  /* ---- Typography --------------------------------------------------------- */
+  --nn-font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --nn-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --nn-text-caption: 0.75rem;
+  --nn-text-caption--line-height: 1rem;
+  --nn-text-sm: 0.875rem;
+  --nn-text-sm--line-height: 1.25rem;
+  --nn-text-body: 1rem;
+  --nn-text-body--line-height: 1.5rem;
+  --nn-text-body-lg: 1.125rem;
+  --nn-text-body-lg--line-height: 1.75rem;
+  --nn-text-h4: 1.25rem;
+  --nn-text-h4--line-height: 1.75rem;
+  --nn-text-h3: 1.5rem;
+  --nn-text-h3--line-height: 2rem;
+  --nn-text-h2: 1.875rem;
+  --nn-text-h2--line-height: 2.25rem;
+  --nn-text-h1: 2.25rem;
+  --nn-text-h1--line-height: 2.5rem;
+  --nn-text-display: 3rem;
+  --nn-text-display--line-height: 1.1;
+
+  --nn-weight-regular: 400;
+  --nn-weight-medium: 500;
+  --nn-weight-semibold: 600;
+  --nn-weight-bold: 700;
+
+  /* ---- Elevation ---------------------------------------------------------- */
+  --nn-shadow-sm: 0 1px 2px rgb(2 6 23 / 0.06), 0 1px 1px rgb(2 6 23 / 0.04);
+  --nn-shadow-md: 0 4px 12px rgb(2 6 23 / 0.08);
+  --nn-shadow-lg: 0 12px 32px rgb(2 6 23 / 0.12);
+
+  /* ---- Motion ------------------------------------------------------------- */
+  --nn-duration-fast: 120ms;
+  --nn-duration-base: 180ms;
+  --nn-ease: cubic-bezier(0.2, 0, 0.13, 1);
+
+  /* ---- Layering ----------------------------------------------------------- */
+  --nn-z-dropdown: 1000;
+  --nn-z-sticky: 1100;
+  --nn-z-overlay: 1200;
+  --nn-z-modal: 1300;
+  --nn-z-tooltip: 1400;
+}
+
+/* ---- Dark theme ---------------------------------------------------------
+   Only the semantic tokens are reassigned; the raw ramps stay fixed so a
+   component that reaches for --nn-indigo-500 gets the same hue in both themes.
+   ------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-nn-theme="light"]) {
+    --nn-color-surface-1: var(--nn-neutral-900);
+    --nn-color-surface-2: var(--nn-neutral-800);
+    --nn-color-surface-3: var(--nn-neutral-700);
+    --nn-color-border: var(--nn-neutral-700);
+    --nn-color-border-strong: var(--nn-neutral-600);
+    --nn-color-overlay: rgb(2 6 23 / 0.7);
+
+    --nn-color-text: var(--nn-neutral-50);
+    --nn-color-text-muted: var(--nn-neutral-300);
+    --nn-color-text-subtle: var(--nn-neutral-400);
+    --nn-color-text-inverted: var(--nn-neutral-900);
+
+    --nn-color-primary: var(--nn-indigo-500);
+    --nn-color-primary-hover: var(--nn-indigo-600);
+    --nn-color-primary-active: var(--nn-indigo-700);
+    --nn-color-primary-fg: var(--nn-neutral-0);
+    --nn-color-primary-subtle: var(--nn-indigo-950);
+    --nn-color-primary-subtle-fg: var(--nn-indigo-200);
+
+    --nn-color-success-subtle: var(--nn-emerald-950);
+    --nn-color-success-subtle-fg: #6ee7b7;
+    --nn-color-warning-subtle: var(--nn-amber-950);
+    --nn-color-warning-subtle-fg: #fcd34d;
+    --nn-color-danger-subtle: var(--nn-red-950);
+    --nn-color-danger-subtle-fg: #fca5a5;
+    --nn-color-info-subtle: var(--nn-sky-950);
+    --nn-color-info-subtle-fg: #7dd3fc;
+
+    --nn-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --nn-shadow-md: 0 4px 12px rgb(0 0 0 / 0.45);
+    --nn-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.55);
+  }
+}
+
+[data-nn-theme="dark"] {
+  --nn-color-surface-1: var(--nn-neutral-900);
+  --nn-color-surface-2: var(--nn-neutral-800);
+  --nn-color-surface-3: var(--nn-neutral-700);
+  --nn-color-border: var(--nn-neutral-700);
+  --nn-color-border-strong: var(--nn-neutral-600);
+  --nn-color-overlay: rgb(2 6 23 / 0.7);
+
+  --nn-color-text: var(--nn-neutral-50);
+  --nn-color-text-muted: var(--nn-neutral-300);
+  --nn-color-text-subtle: var(--nn-neutral-400);
+  --nn-color-text-inverted: var(--nn-neutral-900);
+
+  --nn-color-primary: var(--nn-indigo-500);
+  --nn-color-primary-hover: var(--nn-indigo-600);
+  --nn-color-primary-active: var(--nn-indigo-700);
+  --nn-color-primary-fg: var(--nn-neutral-0);
+  --nn-color-primary-subtle: var(--nn-indigo-950);
+  --nn-color-primary-subtle-fg: var(--nn-indigo-200);
+
+  --nn-color-success-subtle: var(--nn-emerald-950);
+  --nn-color-success-subtle-fg: #6ee7b7;
+  --nn-color-warning-subtle: var(--nn-amber-950);
+  --nn-color-warning-subtle-fg: #fcd34d;
+  --nn-color-danger-subtle: var(--nn-red-950);
+  --nn-color-danger-subtle-fg: #fca5a5;
+  --nn-color-info-subtle: var(--nn-sky-950);
+  --nn-color-info-subtle-fg: #7dd3fc;
+
+  --nn-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --nn-shadow-md: 0 4px 12px rgb(0 0 0 / 0.45);
+  --nn-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.55);
+}
+
+/* ==========================================================================
+   Tailwind v4 preset — generates the utility vocabulary from the tokens above.
+   Consumers get this automatically by importing nn-design/styles.css after
+   `@import "tailwindcss"`.
+   ========================================================================== */
+@theme inline {
+  --color-surface-1: var(--nn-color-surface-1);
+  --color-surface-2: var(--nn-color-surface-2);
+  --color-surface-3: var(--nn-color-surface-3);
+  --color-border: var(--nn-color-border);
+  --color-border-strong: var(--nn-color-border-strong);
+
+  --color-text: var(--nn-color-text);
+  --color-text-muted: var(--nn-color-text-muted);
+  --color-text-subtle: var(--nn-color-text-subtle);
+  --color-text-inverted: var(--nn-color-text-inverted);
+
+  --color-primary: var(--nn-color-primary);
+  --color-primary-hover: var(--nn-color-primary-hover);
+  --color-primary-fg: var(--nn-color-primary-fg);
+  --color-primary-subtle: var(--nn-color-primary-subtle);
+  --color-primary-subtle-fg: var(--nn-color-primary-subtle-fg);
+
+  --color-success: var(--nn-color-success);
+  --color-success-subtle: var(--nn-color-success-subtle);
+  --color-success-subtle-fg: var(--nn-color-success-subtle-fg);
+  --color-warning: var(--nn-color-warning);
+  --color-warning-subtle: var(--nn-color-warning-subtle);
+  --color-warning-subtle-fg: var(--nn-color-warning-subtle-fg);
+  --color-danger: var(--nn-color-danger);
+  --color-danger-subtle: var(--nn-color-danger-subtle);
+  --color-danger-subtle-fg: var(--nn-color-danger-subtle-fg);
+  --color-info: var(--nn-color-info);
+  --color-info-subtle: var(--nn-color-info-subtle);
+  --color-info-subtle-fg: var(--nn-color-info-subtle-fg);
+
+  --spacing-3xs: var(--nn-space-3xs);
+  --spacing-2xs: var(--nn-space-2xs);
+  --spacing-xs: var(--nn-space-xs);
+  --spacing-sm: var(--nn-space-sm);
+  --spacing-md: var(--nn-space-md);
+  --spacing-lg: var(--nn-space-lg);
+  --spacing-xl: var(--nn-space-xl);
+  --spacing-2xl: var(--nn-space-2xl);
+  --spacing-3xl: var(--nn-space-3xl);
+  --spacing-container: var(--nn-space-container);
+  --spacing-section: var(--nn-space-section);
+
+  --radius-xs: var(--nn-radius-xs);
+  --radius-sm: var(--nn-radius-sm);
+  --radius-md: var(--nn-radius-md);
+  --radius-lg: var(--nn-radius-lg);
+  --radius-xl: var(--nn-radius-xl);
+  --radius-2xl: var(--nn-radius-2xl);
+  --radius-full: var(--nn-radius-full);
+
+  --font-sans: var(--nn-font-sans);
+  --font-mono: var(--nn-font-mono);
+
+  --text-caption: var(--nn-text-caption);
+  --text-caption--line-height: var(--nn-text-caption--line-height);
+  --text-sm: var(--nn-text-sm);
+  --text-sm--line-height: var(--nn-text-sm--line-height);
+  --text-body: var(--nn-text-body);
+  --text-body--line-height: var(--nn-text-body--line-height);
+  --text-body-lg: var(--nn-text-body-lg);
+  --text-body-lg--line-height: var(--nn-text-body-lg--line-height);
+  --text-h4: var(--nn-text-h4);
+  --text-h4--line-height: var(--nn-text-h4--line-height);
+  --text-h3: var(--nn-text-h3);
+  --text-h3--line-height: var(--nn-text-h3--line-height);
+  --text-h2: var(--nn-text-h2);
+  --text-h2--line-height: var(--nn-text-h2--line-height);
+  --text-h1: var(--nn-text-h1);
+  --text-h1--line-height: var(--nn-text-h1--line-height);
+  --text-display: var(--nn-text-display);
+  --text-display--line-height: var(--nn-text-display--line-height);
+
+  --shadow-sm: var(--nn-shadow-sm);
+  --shadow-md: var(--nn-shadow-md);
+  --shadow-lg: var(--nn-shadow-lg);
+}

@@ -1,0 +1,14 @@
+.nn-faq__footer {
+  margin-top: var(--nn-space-xl);
+  text-align: center;
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  color: var(--nn-color-text-muted);
+}
+
+/* Inside a section the accordion sits on the section's own surface, so a muted
+   section needs the panel to stay legible against it. */
+.nn-section--muted .nn-faq__footer {
+  color: var(--nn-color-text-muted);
+}

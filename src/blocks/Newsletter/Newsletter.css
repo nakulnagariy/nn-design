@@ -1,0 +1,67 @@
+.nn-newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-sm);
+  align-items: center;
+  font-family: var(--nn-font-sans);
+}
+
+.nn-newsletter--card {
+  padding: var(--nn-space-xl);
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border);
+  border-radius: var(--nn-radius-2xl);
+  box-shadow: var(--nn-shadow-sm);
+}
+
+.nn-newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-xs);
+  width: 100%;
+  max-width: 30rem;
+}
+
+@media (min-width: 40rem) {
+  .nn-newsletter__form {
+    flex-direction: row;
+  }
+}
+
+.nn-newsletter__input {
+  flex: 1;
+}
+
+.nn-newsletter__note,
+.nn-newsletter__success,
+.nn-newsletter__error {
+  margin: 0;
+  text-align: center;
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+}
+
+.nn-newsletter__note {
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-newsletter__error {
+  color: var(--nn-color-danger);
+}
+
+.nn-newsletter__success {
+  padding: var(--nn-space-sm) var(--nn-space-md);
+  border-radius: var(--nn-radius-lg);
+  background-color: var(--nn-color-success-subtle);
+  color: var(--nn-color-success-subtle-fg);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+}
+
+/* On coloured sections the form's own surface must stay readable. */
+.nn-section--primary .nn-newsletter__note,
+.nn-section--inverted .nn-newsletter__note,
+.nn-section--gradient .nn-newsletter__note {
+  color: inherit;
+  opacity: 0.8;
+}

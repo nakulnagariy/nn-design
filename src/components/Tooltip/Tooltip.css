@@ -1,0 +1,79 @@
+.nn-tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.nn-tooltip__trigger {
+  display: inline-flex;
+}
+
+.nn-tooltip__bubble {
+  position: absolute;
+  z-index: var(--nn-z-tooltip);
+  width: max-content;
+  max-width: 16rem;
+  padding: var(--nn-space-2xs) var(--nn-space-xs);
+  border-radius: var(--nn-radius-sm);
+  background-color: var(--nn-neutral-900);
+  color: var(--nn-neutral-50);
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  text-align: center;
+  box-shadow: var(--nn-shadow-md);
+
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--nn-duration-fast) var(--nn-ease),
+    visibility var(--nn-duration-fast) var(--nn-ease);
+  pointer-events: none;
+}
+
+/* In dark mode the tooltip inverts so it still separates from the surface. */
+[data-nn-theme='dark'] .nn-tooltip__bubble {
+  background-color: var(--nn-neutral-700);
+  color: var(--nn-neutral-50);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-nn-theme='light']) .nn-tooltip__bubble {
+    background-color: var(--nn-neutral-700);
+    color: var(--nn-neutral-50);
+  }
+}
+
+.nn-tooltip:hover .nn-tooltip__bubble,
+.nn-tooltip:focus-within .nn-tooltip__bubble {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---- Placement ------------------------------------------------------------- */
+.nn-tooltip--top .nn-tooltip__bubble {
+  bottom: 100%;
+  left: 50%;
+  translate: -50% 0;
+  margin-bottom: var(--nn-space-2xs);
+}
+
+.nn-tooltip--bottom .nn-tooltip__bubble {
+  top: 100%;
+  left: 50%;
+  translate: -50% 0;
+  margin-top: var(--nn-space-2xs);
+}
+
+.nn-tooltip--start .nn-tooltip__bubble {
+  right: 100%;
+  top: 50%;
+  translate: 0 -50%;
+  margin-right: var(--nn-space-2xs);
+}
+
+.nn-tooltip--end .nn-tooltip__bubble {
+  left: 100%;
+  top: 50%;
+  translate: 0 -50%;
+  margin-left: var(--nn-space-2xs);
+}

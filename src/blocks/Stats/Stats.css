@@ -1,0 +1,74 @@
+.nn-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--nn-space-xl);
+  margin: 0;
+}
+
+@media (min-width: 64rem) {
+  .nn-stats {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-template-columns: none;
+  }
+}
+
+.nn-stats__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-3xs);
+  min-width: 0;
+  text-align: center;
+}
+
+.nn-stats__item--bordered {
+  padding: var(--nn-space-lg);
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border);
+  border-radius: var(--nn-radius-xl);
+}
+
+.nn-stats__value {
+  margin: 0;
+  font-size: var(--nn-text-display);
+  line-height: 1.05;
+  font-weight: var(--nn-weight-bold);
+  letter-spacing: -0.03em;
+  color: var(--nn-color-primary);
+  /* Keeps digits the same width so columns of figures align. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* On coloured sections the primary value colour would disappear. */
+.nn-section--primary .nn-stats__value,
+.nn-section--inverted .nn-stats__value,
+.nn-section--gradient .nn-stats__value {
+  color: inherit;
+}
+
+.nn-stats__label {
+  font-size: var(--nn-text-body);
+  line-height: var(--nn-text-body--line-height);
+  font-weight: var(--nn-weight-semibold);
+  color: var(--nn-color-text);
+}
+
+.nn-section--primary .nn-stats__label,
+.nn-section--inverted .nn-stats__label,
+.nn-section--gradient .nn-stats__label {
+  color: inherit;
+}
+
+.nn-stats__description {
+  margin: 0;
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-section--primary .nn-stats__description,
+.nn-section--inverted .nn-stats__description,
+.nn-section--gradient .nn-stats__description {
+  color: inherit;
+  opacity: 0.75;
+}

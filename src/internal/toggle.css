@@ -1,0 +1,134 @@
+/* Shared layout for checkbox / radio / switch — control, label, description. */
+
+.nn-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-3xs);
+  min-width: 0;
+}
+
+.nn-toggle__row {
+  display: flex;
+  align-items: center;
+  gap: var(--nn-space-xs);
+}
+
+.nn-toggle__label {
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-body);
+  line-height: var(--nn-text-body--line-height);
+  color: var(--nn-color-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.nn-toggle.is-disabled .nn-toggle__label {
+  cursor: not-allowed;
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-toggle__description {
+  /* Align under the label, past the control and its gap. */
+  padding-inline-start: calc(1.125rem + var(--nn-space-xs));
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-toggle__error {
+  padding-inline-start: calc(1.125rem + var(--nn-space-xs));
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  color: var(--nn-color-danger);
+}
+
+/* ---- Checkbox & radio shared box ------------------------------------------ */
+.nn-checkbox,
+.nn-radio {
+  appearance: none;
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border-strong);
+  cursor: pointer;
+  transition:
+    background-color var(--nn-duration-fast) var(--nn-ease),
+    border-color var(--nn-duration-fast) var(--nn-ease);
+}
+
+.nn-checkbox {
+  border-radius: var(--nn-radius-xs);
+}
+
+.nn-radio {
+  border-radius: var(--nn-radius-full);
+}
+
+.nn-checkbox:hover:not(:disabled),
+.nn-radio:hover:not(:disabled) {
+  border-color: var(--nn-color-primary);
+}
+
+.nn-checkbox:checked,
+.nn-checkbox:indeterminate,
+.nn-radio:checked {
+  background-color: var(--nn-color-primary);
+  border-color: var(--nn-color-primary);
+}
+
+/* Checkmark drawn with a rotated border, so no icon asset is needed. */
+.nn-checkbox:checked::after {
+  content: '';
+  display: block;
+  width: 0.3rem;
+  height: 0.6rem;
+  margin: 0.05rem auto 0;
+  border-inline-end: 2px solid var(--nn-color-primary-fg);
+  border-block-end: 2px solid var(--nn-color-primary-fg);
+  transform: rotate(45deg);
+}
+
+.nn-checkbox:indeterminate::after {
+  content: '';
+  display: block;
+  width: 0.55rem;
+  height: 2px;
+  margin: 0 auto;
+  background-color: var(--nn-color-primary-fg);
+}
+
+.nn-radio:checked::after {
+  content: '';
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin: auto;
+  border-radius: var(--nn-radius-full);
+  background-color: var(--nn-color-primary-fg);
+}
+
+.nn-radio {
+  display: grid;
+}
+
+.nn-checkbox:disabled,
+.nn-radio:disabled {
+  cursor: not-allowed;
+  background-color: var(--nn-color-surface-3);
+  border-color: var(--nn-color-border);
+}
+
+.nn-checkbox:disabled:checked,
+.nn-radio:disabled:checked {
+  background-color: var(--nn-color-text-subtle);
+  border-color: var(--nn-color-text-subtle);
+}
+
+.nn-toggle--invalid .nn-checkbox,
+.nn-toggle--invalid .nn-radio {
+  border-color: var(--nn-color-danger);
+}

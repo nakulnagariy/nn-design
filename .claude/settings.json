@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(echo \"=== TYPECHECK EXIT: $? ===\")",
+      "Bash(npm run *)",
+      "Bash(mkdir -p .tmp-verify)",
+      "Bash(npx @tailwindcss/cli -i .tmp-verify/in.css -o .tmp-verify/out.css)",
+      "Bash(echo \"=== EXIT $? ===\")",
+      "Bash(npm whoami *)",
+      "Bash(gh auth *)",
+      "Bash(npx playwright *)",
+      "Bash(npm i *)",
+      "Bash(npx http-server *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:6008/index.html)",
+      "Bash(node .shots/probe.mjs)",
+      "Bash(node .shots/shoot.mjs)",
+      "Bash(rm -rf .shots storybook-static)",
+      "Bash(npm uninstall *)",
+      "Bash(npm pack *)",
+      "Bash(git config *)",
+      "Bash(node -e \"const p=require\\('./package.json'\\);console.log\\('valid JSON'\\);console.log\\('homepage:',p.homepage\\);console.log\\('repo:',p.repository.url\\)\")"
+    ]
+  }
+}

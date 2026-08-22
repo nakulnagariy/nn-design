@@ -1,0 +1,101 @@
+.nn-dropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.nn-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--nn-radius-md);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.nn-dropdown__menu {
+  position: absolute;
+  top: calc(100% + var(--nn-space-2xs));
+  z-index: var(--nn-z-dropdown);
+  display: flex;
+  flex-direction: column;
+  min-width: 11rem;
+  padding: var(--nn-space-2xs);
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border);
+  border-radius: var(--nn-radius-lg);
+  box-shadow: var(--nn-shadow-lg);
+  animation: nn-dropdown-in var(--nn-duration-fast) var(--nn-ease);
+}
+
+.nn-dropdown__menu--start {
+  inset-inline-start: 0;
+}
+
+.nn-dropdown__menu--end {
+  inset-inline-end: 0;
+}
+
+@keyframes nn-dropdown-in {
+  from {
+    opacity: 0;
+    translate: 0 -0.25rem;
+  }
+}
+
+.nn-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: var(--nn-space-xs);
+  width: 100%;
+  padding: var(--nn-space-xs) var(--nn-space-sm);
+  background: transparent;
+  border: 0;
+  border-radius: var(--nn-radius-md);
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  color: var(--nn-color-text);
+  text-align: start;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nn-dropdown__item:hover:not(:disabled) {
+  background-color: var(--nn-color-surface-3);
+}
+
+.nn-dropdown__item:disabled {
+  cursor: not-allowed;
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-dropdown__item--destructive {
+  color: var(--nn-color-danger);
+}
+
+.nn-dropdown__item--destructive:hover:not(:disabled) {
+  background-color: var(--nn-color-danger-subtle);
+}
+
+/* The rule is drawn with margin + border on the item itself so it sits between
+   rows without needing a separate separator element in the menu. */
+.nn-dropdown__item--separated {
+  margin-top: var(--nn-space-2xs);
+  padding-top: calc(var(--nn-space-xs) + var(--nn-space-2xs));
+  border-top: 1px solid var(--nn-color-border);
+  border-radius: 0 0 var(--nn-radius-md) var(--nn-radius-md);
+}
+
+.nn-dropdown__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.nn-dropdown__label {
+  flex: 1;
+  min-width: 0;
+}

@@ -1,0 +1,30 @@
+.nn-select {
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+
+.nn-select__control {
+  appearance: none;
+  /* Room for the chevron. */
+  padding-inline-end: var(--nn-space-xl);
+  cursor: pointer;
+}
+
+.nn-select__control:disabled {
+  cursor: not-allowed;
+}
+
+.nn-select__arrow {
+  position: absolute;
+  inset-inline-end: var(--nn-space-sm);
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.25rem;
+  border-inline-end: 1.5px solid var(--nn-color-text-muted);
+  border-block-end: 1.5px solid var(--nn-color-text-muted);
+  transform: rotate(45deg);
+  transform-origin: center;
+  pointer-events: none;
+}

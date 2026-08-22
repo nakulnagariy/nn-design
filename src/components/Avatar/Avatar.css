@@ -1,0 +1,83 @@
+.nn-avatar {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  background-color: var(--nn-color-primary-subtle);
+  color: var(--nn-color-primary-subtle-fg);
+  font-family: var(--nn-font-sans);
+  font-weight: var(--nn-weight-semibold);
+  line-height: 1;
+  overflow: visible;
+  user-select: none;
+}
+
+.nn-avatar--circle {
+  border-radius: var(--nn-radius-full);
+}
+
+.nn-avatar--square {
+  border-radius: var(--nn-radius-md);
+}
+
+.nn-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+.nn-avatar__initials {
+  display: block;
+}
+
+/* ---- Size ------------------------------------------------------------------ */
+.nn-avatar--xs {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.625rem;
+}
+.nn-avatar--sm {
+  width: 2rem;
+  height: 2rem;
+  font-size: var(--nn-text-caption);
+}
+.nn-avatar--md {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: var(--nn-text-sm);
+}
+.nn-avatar--lg {
+  width: 3rem;
+  height: 3rem;
+  font-size: var(--nn-text-body);
+}
+.nn-avatar--xl {
+  width: 4rem;
+  height: 4rem;
+  font-size: var(--nn-text-h4);
+}
+
+/* ---- Status dot ------------------------------------------------------------ */
+.nn-avatar__status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 28%;
+  height: 28%;
+  min-width: 0.5rem;
+  min-height: 0.5rem;
+  border-radius: var(--nn-radius-full);
+  border: 2px solid var(--nn-color-surface-1);
+}
+
+.nn-avatar__status--online {
+  background-color: var(--nn-color-success);
+}
+.nn-avatar__status--busy {
+  background-color: var(--nn-color-danger);
+}
+.nn-avatar__status--offline {
+  background-color: var(--nn-color-text-subtle);
+}

@@ -1,0 +1,53 @@
+/* ==========================================================================
+   Base layer — scoped, not a global reset.
+
+   Everything here is namespaced under .nn-root so dropping the design system
+   into an existing app never restyles that app's own markup. Wrap your tree
+   in <Root> (or any element with class="nn-root") to opt in.
+   ========================================================================== */
+
+.nn-root {
+  background-color: var(--nn-color-surface-1);
+  color: var(--nn-color-text);
+  font-family: var(--nn-font-sans);
+  font-size: var(--nn-text-body);
+  line-height: var(--nn-text-body--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nn-root *,
+.nn-root *::before,
+.nn-root *::after {
+  box-sizing: border-box;
+}
+
+/* Shared focus treatment. Components apply .nn-focusable and get a consistent,
+   keyboard-only ring instead of each re-inventing one. */
+.nn-focusable:focus-visible {
+  outline: 2px solid var(--nn-color-focus);
+  outline-offset: 2px;
+}
+
+/* Visually hidden but available to screen readers. */
+.nn-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-root *,
+  .nn-root *::before,
+  .nn-root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

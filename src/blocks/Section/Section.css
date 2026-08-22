@@ -1,0 +1,140 @@
+.nn-section {
+  position: relative;
+  font-family: var(--nn-font-sans);
+  color: var(--nn-color-text);
+}
+
+/* ---- Tone ------------------------------------------------------------------ */
+.nn-section--default {
+  background-color: var(--nn-color-surface-1);
+}
+
+.nn-section--muted {
+  background-color: var(--nn-color-surface-2);
+}
+
+.nn-section--primary {
+  background-color: var(--nn-color-primary);
+  color: var(--nn-color-primary-fg);
+}
+
+.nn-section--inverted {
+  background-color: var(--nn-neutral-900);
+  color: var(--nn-neutral-50);
+}
+
+.nn-section--gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--nn-indigo-600) 0%,
+    var(--nn-indigo-500) 45%,
+    var(--nn-sky-500) 100%
+  );
+  color: #ffffff;
+}
+
+/* On a coloured section the heading tokens would fall back to body colours, so
+   they inherit instead. */
+.nn-section--primary .nn-section__title,
+.nn-section--inverted .nn-section__title,
+.nn-section--gradient .nn-section__title {
+  color: inherit;
+}
+
+.nn-section--primary .nn-section__description,
+.nn-section--inverted .nn-section__description,
+.nn-section--gradient .nn-section__description {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.nn-section--primary .nn-section__eyebrow,
+.nn-section--inverted .nn-section__eyebrow,
+.nn-section--gradient .nn-section__eyebrow {
+  color: inherit;
+  opacity: 0.75;
+}
+
+/* ---- Spacing --------------------------------------------------------------- */
+.nn-section--space-none {
+  padding-block: 0;
+}
+
+.nn-section--space-sm {
+  padding-block: var(--nn-space-xl);
+}
+
+.nn-section--space-md {
+  padding-block: var(--nn-space-2xl);
+}
+
+.nn-section--space-lg {
+  padding-block: var(--nn-space-2xl);
+}
+
+@media (min-width: 64rem) {
+  .nn-section--space-md {
+    padding-block: var(--nn-space-3xl);
+  }
+  .nn-section--space-lg {
+    padding-block: calc(var(--nn-space-3xl) * 1.5);
+  }
+}
+
+/* ---- Heading group --------------------------------------------------------- */
+.nn-section__heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-sm);
+  max-width: 44rem;
+}
+
+.nn-section__heading--center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.nn-section__heading--start {
+  align-items: flex-start;
+  text-align: start;
+}
+
+.nn-section__eyebrow {
+  margin: 0;
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  font-weight: var(--nn-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nn-color-primary);
+}
+
+.nn-section__title {
+  margin: 0;
+  font-size: var(--nn-text-h2);
+  line-height: var(--nn-text-h2--line-height);
+  font-weight: var(--nn-weight-bold);
+  letter-spacing: -0.015em;
+  color: var(--nn-color-text);
+  text-wrap: balance;
+}
+
+@media (min-width: 64rem) {
+  .nn-section__title {
+    font-size: var(--nn-text-h1);
+    line-height: var(--nn-text-h1--line-height);
+  }
+}
+
+.nn-section__description {
+  margin: 0;
+  font-size: var(--nn-text-body-lg);
+  line-height: var(--nn-text-body-lg--line-height);
+  color: var(--nn-color-text-muted);
+  text-wrap: pretty;
+}
+
+.nn-section__body.has-heading {
+  margin-top: var(--nn-space-2xl);
+}

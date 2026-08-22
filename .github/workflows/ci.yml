@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build library
+        run: npm run build
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      # Catches the case where a component is exported from src/index.ts but its
+      # stylesheet was never added to src/styles/index.css — the build succeeds,
+      # but the published component would render unstyled.
+      - name: Check every component stylesheet is imported
+        run: |
+          missing=0
+          for css in $(find src/components src/blocks src/internal -name '*.css'); do
+            if ! grep -q "$(basename "$css")" src/styles/index.css; then
+              echo "::error file=$css::$css is not imported by src/styles/index.css"
+              missing=1
+            fi
+          done
+          exit $missing

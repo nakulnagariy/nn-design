@@ -1,0 +1,188 @@
+.nn-hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--nn-space-3xl);
+  font-family: var(--nn-font-sans);
+  background-color: var(--nn-color-surface-1);
+  color: var(--nn-color-text);
+}
+
+@media (min-width: 64rem) {
+  .nn-hero {
+    padding-block: calc(var(--nn-space-3xl) * 1.5);
+  }
+}
+
+.nn-hero--height-tall {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.nn-hero--height-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* The Container is the flex child in tall/screen mode, so it must still span. */
+.nn-hero--height-tall > .nn-container,
+.nn-hero--height-screen > .nn-container {
+  width: 100%;
+}
+
+/* ---- Copy ------------------------------------------------------------------ */
+.nn-hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-md);
+}
+
+.nn-hero__badge {
+  display: flex;
+}
+
+.nn-hero__eyebrow {
+  margin: 0;
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  font-weight: var(--nn-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nn-color-primary);
+}
+
+.nn-hero__title {
+  margin: 0;
+  font-size: var(--nn-text-h1);
+  line-height: 1.1;
+  font-weight: var(--nn-weight-bold);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+@media (min-width: 40rem) {
+  .nn-hero__title {
+    font-size: var(--nn-text-display);
+  }
+}
+
+@media (min-width: 64rem) {
+  .nn-hero__title {
+    font-size: 3.75rem;
+  }
+}
+
+.nn-hero__description {
+  margin: 0;
+  max-width: 40rem;
+  font-size: var(--nn-text-body-lg);
+  line-height: var(--nn-text-body-lg--line-height);
+  color: var(--nn-color-text-muted);
+  text-wrap: pretty;
+}
+
+.nn-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nn-space-sm);
+  margin-top: var(--nn-space-2xs);
+}
+
+.nn-hero__note {
+  margin: 0;
+  font-size: var(--nn-text-caption);
+  line-height: var(--nn-text-caption--line-height);
+  color: var(--nn-color-text-subtle);
+}
+
+.nn-hero__media {
+  min-width: 0;
+}
+
+/* ---- Variant: centered ----------------------------------------------------- */
+.nn-hero--centered .nn-hero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-2xl);
+}
+
+.nn-hero--centered .nn-hero__copy {
+  align-items: center;
+  text-align: center;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+.nn-hero--centered .nn-hero__actions {
+  justify-content: center;
+}
+
+/* ---- Variant: split -------------------------------------------------------- */
+.nn-hero--split .nn-hero__inner {
+  display: grid;
+  gap: var(--nn-space-2xl);
+  align-items: center;
+}
+
+@media (min-width: 64rem) {
+  .nn-hero--split .nn-hero__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--nn-space-3xl);
+  }
+
+  /* Media first flips the visual order without moving the copy in the DOM,
+     so the headline still comes first for screen readers. */
+  .nn-hero--split.nn-hero--media-first .nn-hero__copy {
+    order: 2;
+  }
+}
+
+/* ---- Variant: gradient ----------------------------------------------------- */
+.nn-hero--gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--nn-indigo-700) 0%,
+    var(--nn-indigo-500) 50%,
+    var(--nn-sky-500) 100%
+  );
+  color: #ffffff;
+}
+
+.nn-hero--gradient .nn-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-2xl);
+}
+
+.nn-hero--gradient .nn-hero__copy {
+  align-items: center;
+  text-align: center;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+.nn-hero--gradient .nn-hero__actions {
+  justify-content: center;
+}
+
+.nn-hero--gradient .nn-hero__eyebrow,
+.nn-hero--gradient .nn-hero__description,
+.nn-hero--gradient .nn-hero__note {
+  color: inherit;
+  opacity: 0.88;
+}
+
+/* Soft radial highlight behind the copy, purely decorative. */
+.nn-hero__glow {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  width: min(60rem, 120%);
+  aspect-ratio: 1;
+  translate: -50% 0;
+  background: radial-gradient(circle, rgb(255 255 255 / 0.28) 0%, transparent 62%);
+  pointer-events: none;
+}

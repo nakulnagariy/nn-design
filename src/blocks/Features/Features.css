@@ -1,0 +1,112 @@
+.nn-features__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-xs);
+  min-width: 0;
+  height: 100%;
+}
+
+.nn-features__item--card {
+  padding: var(--nn-space-lg);
+  background-color: var(--nn-color-surface-1);
+  border: 1px solid var(--nn-color-border);
+  border-radius: var(--nn-radius-xl);
+  transition:
+    border-color var(--nn-duration-base) var(--nn-ease),
+    box-shadow var(--nn-duration-base) var(--nn-ease),
+    translate var(--nn-duration-base) var(--nn-ease);
+}
+
+.nn-features__item--card:hover {
+  border-color: var(--nn-color-primary);
+  box-shadow: var(--nn-shadow-md);
+  translate: 0 -2px;
+}
+
+/* On a muted section the cards need to be lighter than their backdrop, not
+   the same colour. */
+.nn-section--muted .nn-features__item--card {
+  background-color: var(--nn-color-surface-1);
+}
+
+.nn-features__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: var(--nn-space-2xs);
+  border-radius: var(--nn-radius-lg);
+  background-color: var(--nn-color-primary-subtle);
+  color: var(--nn-color-primary-subtle-fg);
+  font-size: var(--nn-text-h4);
+  line-height: 1;
+}
+
+.nn-features__title {
+  margin: 0;
+  font-size: var(--nn-text-h4);
+  line-height: var(--nn-text-h4--line-height);
+  font-weight: var(--nn-weight-semibold);
+  color: var(--nn-color-text);
+}
+
+.nn-features__description {
+  margin: 0;
+  font-size: var(--nn-text-sm);
+  line-height: var(--nn-text-sm--line-height);
+  color: var(--nn-color-text-muted);
+  text-wrap: pretty;
+}
+
+.nn-features__link {
+  margin-top: auto;
+  padding-top: var(--nn-space-xs);
+  font-size: var(--nn-text-sm);
+}
+
+/* ---- Alternating rows ------------------------------------------------------ */
+.nn-features__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-3xl);
+}
+
+.nn-features__row {
+  display: grid;
+  gap: var(--nn-space-xl);
+  align-items: center;
+}
+
+.nn-features__row-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nn-space-sm);
+  min-width: 0;
+}
+
+.nn-features__row-copy .nn-features__title {
+  font-size: var(--nn-text-h3);
+  line-height: var(--nn-text-h3--line-height);
+}
+
+.nn-features__row-copy .nn-features__description {
+  font-size: var(--nn-text-body);
+  line-height: var(--nn-text-body--line-height);
+}
+
+.nn-features__row-media {
+  min-width: 0;
+}
+
+@media (min-width: 64rem) {
+  .nn-features__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--nn-space-3xl);
+  }
+
+  /* Visual order flips; DOM order stays copy-first so the heading is read
+     before its illustration. */
+  .nn-features__row.is-flipped .nn-features__row-copy {
+    order: 2;
+  }
+}

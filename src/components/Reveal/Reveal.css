@@ -1,0 +1,88 @@
+/* Scroll-reveal primitive.
+
+   The hidden state lives on `.nn-reveal` and is removed by `.is-visible`, which
+   React adds once IntersectionObserver fires. If the observer is unavailable
+   the hook reports visible immediately, so content is never stranded hidden. */
+
+.nn-reveal {
+  transition-property: opacity, translate, scale, filter;
+  transition-duration: var(--nn-reveal-duration, 600ms);
+  transition-delay: var(--nn-reveal-delay, 0ms);
+  transition-timing-function: var(--nn-ease);
+  will-change: opacity, translate;
+}
+
+.nn-reveal--fade,
+.nn-reveal--slide-up,
+.nn-reveal--slide-down,
+.nn-reveal--slide-left,
+.nn-reveal--slide-right,
+.nn-reveal--scale,
+.nn-reveal--blur {
+  opacity: 0;
+}
+
+.nn-reveal--slide-up {
+  translate: 0 1.5rem;
+}
+.nn-reveal--slide-down {
+  translate: 0 -1.5rem;
+}
+.nn-reveal--slide-left {
+  translate: 1.5rem 0;
+}
+.nn-reveal--slide-right {
+  translate: -1.5rem 0;
+}
+.nn-reveal--scale {
+  scale: 0.94;
+}
+.nn-reveal--blur {
+  filter: blur(12px);
+}
+
+.nn-reveal.is-visible {
+  opacity: 1;
+  translate: none;
+  scale: none;
+  filter: none;
+  /* Once revealed, stop advertising the element for compositing. */
+  will-change: auto;
+}
+
+/* The stagger wrapper must not introduce a layout box of its own — children
+   keep whatever grid/flex placement the parent gave them. */
+.nn-reveal-group {
+  display: contents;
+}
+
+/* Each staggered child gets its own .nn-reveal wrapper, which becomes the real
+   grid/flex item. Making that wrapper a stretching column lets cards inside it
+   equalise height across a row — without this, `height: 100%` on a card would
+   resolve against an auto-height wrapper and collapse. */
+.nn-reveal-group > .nn-reveal {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nn-reveal-group > .nn-reveal > * {
+  flex: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-reveal,
+  .nn-reveal--fade,
+  .nn-reveal--slide-up,
+  .nn-reveal--slide-down,
+  .nn-reveal--slide-left,
+  .nn-reveal--slide-right,
+  .nn-reveal--scale,
+  .nn-reveal--blur {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    filter: none;
+    transition: none;
+  }
+}
