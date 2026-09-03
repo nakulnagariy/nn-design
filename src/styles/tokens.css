@@ -7,7 +7,8 @@
       with or without Tailwind, and they are what component CSS references.
    2. `@theme inline`     — re-exports the same values into Tailwind v4's theme
       namespaces, which is what generates the utility vocabulary
-      (bg-surface-1, gap-md, rounded-lg, text-body, ...).
+      (bg-surface-1, rounded-lg, text-body, max-w-page, ...). Spacing is left
+      on Tailwind's numeric scale on purpose — see the note in @theme below.
 
    `inline` matters: it makes Tailwind emit `var(--nn-color-primary)` into the
    utility rather than a frozen copy of the value, so utilities follow the
@@ -117,7 +118,9 @@
   --nn-color-focus: var(--nn-indigo-500);
   --nn-focus-ring: 0 0 0 3px rgb(99 102 241 / 0.35);
 
-  /* ---- Spacing ------------------------------------------------------------ */
+  /* ---- Spacing — a pure spacing scale: gaps, padding, margins ----------
+     Deliberately NOT a width scale. Anything that sets max-width (a content
+     column, a reading measure) uses the layout tokens below instead. */
   --nn-space-0: 0rem;
   --nn-space-3xs: 0.125rem;
   --nn-space-2xs: 0.25rem;
@@ -128,8 +131,15 @@
   --nn-space-xl: 2rem;
   --nn-space-2xl: 3rem;
   --nn-space-3xl: 4rem;
-  --nn-space-container: 2rem;
-  --nn-space-section: 4rem;
+
+  /* ---- Layout — content widths ----------------------------------------
+     These feed max-width, not gaps. The four sizes mirror the <Container>
+     `size` prop; `prose` is the readable measure for long-form text. */
+  --nn-width-prose: 65ch;
+  --nn-width-sm: 40rem;
+  --nn-width-md: 56rem;
+  --nn-width-lg: 72rem;
+  --nn-width-xl: 90rem;
 
   /* ---- Radius ------------------------------------------------------------- */
   --nn-radius-xs: 0.25rem;
@@ -298,17 +308,22 @@
   --color-info-subtle: var(--nn-color-info-subtle);
   --color-info-subtle-fg: var(--nn-color-info-subtle-fg);
 
-  --spacing-3xs: var(--nn-space-3xs);
-  --spacing-2xs: var(--nn-space-2xs);
-  --spacing-xs: var(--nn-space-xs);
-  --spacing-sm: var(--nn-space-sm);
-  --spacing-md: var(--nn-space-md);
-  --spacing-lg: var(--nn-space-lg);
-  --spacing-xl: var(--nn-space-xl);
-  --spacing-2xl: var(--nn-space-2xl);
-  --spacing-3xl: var(--nn-space-3xl);
-  --spacing-container: var(--nn-space-container);
-  --spacing-section: var(--nn-space-section);
+  /* Spacing stays on Tailwind's numeric scale (`gap-4`, `p-6`, `px-2`).
+     We intentionally do NOT register `--spacing-sm|md|lg|xl|2xl|3xl` here:
+     in Tailwind v4 the `--spacing-*` namespace also backs `w-*`/`min-w-*`/
+     `max-w-*`, so a t-shirt spacing key silently shadows the width scale
+     (`max-w-2xl` would resolve to 3rem instead of 42rem). Reach for the
+     `--nn-space-*` custom properties directly when you need these exact
+     steps: `gap-[var(--nn-space-md)]`.
+
+     Content widths get their own keys so they can't collide with
+     Tailwind's built-in `--container-*` t-shirt sizes: `max-w-prose`,
+     `max-w-narrow`, `max-w-content`, `max-w-page`, `max-w-wide`. */
+  --container-prose: var(--nn-width-prose);
+  --container-narrow: var(--nn-width-sm);
+  --container-content: var(--nn-width-md);
+  --container-page: var(--nn-width-lg);
+  --container-wide: var(--nn-width-xl);
 
   --radius-xs: var(--nn-radius-xs);
   --radius-sm: var(--nn-radius-sm);

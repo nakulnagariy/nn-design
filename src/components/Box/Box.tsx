@@ -13,8 +13,6 @@ export type BoxSpace =
   | 'xl'
   | '2xl'
   | '3xl'
-  | 'container'
-  | 'section'
 
 export type BoxSurface = 'none' | 'surface-1' | 'surface-2' | 'surface-3' | 'primary-subtle'
 
@@ -42,6 +40,8 @@ export interface BoxProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode
 }
 
+// Padding only — the spacing scale. Keep BoxSpace in sync with --nn-space-* in
+// tokens.css; it must never carry width keys (see CLAUDE.md "Token rules").
 const space = (v: BoxSpace | undefined) =>
   v === undefined ? undefined : v === 'none' ? '0' : `var(--nn-space-${v})`
 

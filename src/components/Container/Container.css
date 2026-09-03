@@ -20,17 +20,20 @@
   padding-inline: 0;
 }
 
+/* Widths come from the layout scale, never the spacing scale. These four keep
+   parity with the <Container> `size` prop and with `--container-*` in the
+   Tailwind preset. See CLAUDE.md "Token rules". */
 .nn-container--sm {
-  max-width: 40rem;
+  max-width: var(--nn-width-sm);
 }
 .nn-container--md {
-  max-width: 56rem;
+  max-width: var(--nn-width-md);
 }
 .nn-container--lg {
-  max-width: 72rem;
+  max-width: var(--nn-width-lg);
 }
 .nn-container--xl {
-  max-width: 90rem;
+  max-width: var(--nn-width-xl);
 }
 .nn-container--full {
   max-width: none;
