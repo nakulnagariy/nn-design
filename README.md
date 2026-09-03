@@ -55,7 +55,7 @@ Components come pre-styled — you never write CSS for them. For the layout glue
 *between* components, the tokens are also exported as a Tailwind v4 preset:
 
 ```tsx
-<div className="flex gap-md p-container bg-surface-2 rounded-lg">
+<div className="flex gap-4 p-6 bg-surface-2 rounded-lg">
   <Button variant="primary">Save</Button>
 </div>
 ```
@@ -79,13 +79,23 @@ directly as `var(--nn-space-md)`, `var(--nn-color-surface-2)`, and so on.
 | Text | `text` `text-muted` `text-subtle` `text-inverted` | `text-text-muted` |
 | Primary | `primary` `primary-hover` `primary-fg` `primary-subtle` | `bg-primary` `text-primary` |
 | Status | `success` `warning` `danger` `info` (each with `-subtle`, `-subtle-fg`) | `bg-danger-subtle` |
-| Spacing | `3xs` `2xs` `xs` `sm` `md` `lg` `xl` `2xl` `3xl` `container` `section` | `gap-md` `p-container` |
+| Spacing | `3xs` `2xs` `xs` `sm` `md` `lg` `xl` `2xl` `3xl` | `gap-[var(--nn-space-md)]` |
+| Width | `prose` `narrow` `content` `page` `wide` | `max-w-page` `max-w-prose` |
 | Radius | `xs` `sm` `md` `lg` `xl` `2xl` `full` | `rounded-lg` |
 | Type | `caption` `sm` `body` `body-lg` `h4` `h3` `h2` `h1` `display` | `text-body` `text-h1` |
 | Shadow | `sm` `md` `lg` | `shadow-md` |
 
 As CSS custom properties these are prefixed `--nn-`: `--nn-color-surface-2`,
-`--nn-space-md`, `--nn-radius-lg`, `--nn-text-body`, `--nn-shadow-md`.
+`--nn-space-md`, `--nn-width-page`, `--nn-radius-lg`, `--nn-text-body`,
+`--nn-shadow-md`.
+
+**Spacing** is not registered as named Tailwind utilities. In Tailwind v4 the
+`--spacing-*` namespace also backs `w-*` / `max-w-*`, so a `--spacing-lg` key
+would quietly turn `max-w-lg` into 1.5rem. Use Tailwind's numeric scale
+(`gap-4`, `p-6`) for glue, or reference an exact step with
+`gap-[var(--nn-space-md)]`. For constraining content width, use the `Width`
+tokens (`max-w-page`, `max-w-prose`) or the `Container` component — Tailwind's
+own `max-w-sm … max-w-7xl` keep their stock values.
 
 ## Theming
 
@@ -251,6 +261,12 @@ subpath (`https://<user>.github.io/nn-design/`) with no extra configuration.
 
 Styles are deliberately not imported from the JS, so importing one component
 never drags the whole stylesheet into your bundle.
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md). Note the **0.2.0** break: the `gap-md` /
+`p-lg` style Tailwind utilities were removed — use the numeric scale (`gap-4`,
+`p-6`) or `gap-[var(--nn-space-md)]`.
 
 ## License
 

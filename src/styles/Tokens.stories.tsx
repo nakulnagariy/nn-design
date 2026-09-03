@@ -107,7 +107,7 @@ export const Colours: Story = {
 export const Spacing: Story = {
   render: () => (
     <Stack gap="2xs">
-      {['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'container', 'section'].map(
+      {['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'].map(
         (step) => (
           <Row key={step} name={`--nn-space-${step}`}>
             <div
@@ -121,6 +121,26 @@ export const Spacing: Story = {
           </Row>
         ),
       )}
+    </Stack>
+  ),
+}
+
+export const Width: Story = {
+  render: () => (
+    <Stack gap="sm">
+      {['prose', 'narrow', 'content', 'page', 'wide'].map((step) => (
+        <Row key={step} name={`--nn-width-${step}`}>
+          <div
+            style={{
+              height: '0.75rem',
+              width: `min(100%, var(--nn-width-${step}))`,
+              backgroundColor: 'var(--nn-color-primary-subtle)',
+              border: '1px solid var(--nn-color-primary)',
+              borderRadius: 'var(--nn-radius-xs)',
+            }}
+          />
+        </Row>
+      ))}
     </Stack>
   ),
 }

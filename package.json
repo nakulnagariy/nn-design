@@ -1,6 +1,6 @@
 {
   "name": "nn-design",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "NN Design System — React components, design tokens, page blocks, and a Tailwind v4 preset.",
   "license": "MIT",
   "author": "Nakul Nagariya",
@@ -34,7 +34,8 @@
     "**/*.css"
   ],
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
