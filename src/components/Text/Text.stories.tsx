@@ -9,7 +9,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Body copy at a fixed step on the type scale. Section titles belong in `Heading`.',
+        component:
+          'Body copy at a fixed step on the type scale. Section titles belong in `Heading`.',
       },
     },
   },

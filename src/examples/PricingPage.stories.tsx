@@ -101,7 +101,9 @@ export const Page: Story = {
           title="Pay for what you use"
           description="Every plan includes the full component library. You are only paying for scale and support."
           tiers={tiers}
-          note={annual ? 'Billed once a year. Cancel any time.' : 'Billed monthly. Cancel any time.'}
+          note={
+            annual ? 'Billed once a year. Cancel any time.' : 'Billed monthly. Cancel any time.'
+          }
           toggle={
             <Tabs
               variant="pill"

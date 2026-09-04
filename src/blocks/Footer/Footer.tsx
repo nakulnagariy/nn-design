@@ -85,7 +85,10 @@ export function Footer({
   )
 
   return (
-    <footer className={cx('nn-footer', `nn-footer--${tone}`, `nn-footer--${variant}`, className)} {...rest}>
+    <footer
+      className={cx('nn-footer', `nn-footer--${tone}`, `nn-footer--${variant}`, className)}
+      {...rest}
+    >
       <Container size={size}>
         {variant === 'columns' ? (
           <div className="nn-footer__top">
@@ -101,7 +104,9 @@ export function Footer({
                   <div key={columnIndex} className="nn-footer__column">
                     <h3 className="nn-footer__column-title">{column.title}</h3>
                     <div className="nn-footer__column-links">
-                      {column.links.map((link, linkIndex) => renderLink(link, `${columnIndex}-${linkIndex}`))}
+                      {column.links.map((link, linkIndex) =>
+                        renderLink(link, `${columnIndex}-${linkIndex}`),
+                      )}
                     </div>
                   </div>
                 ))}
@@ -114,7 +119,9 @@ export function Footer({
             {columns.length > 0 ? (
               <nav className="nn-footer__simple-nav" aria-label="Footer">
                 {columns.flatMap((column, columnIndex) =>
-                  column.links.map((link, linkIndex) => renderLink(link, `${columnIndex}-${linkIndex}`)),
+                  column.links.map((link, linkIndex) =>
+                    renderLink(link, `${columnIndex}-${linkIndex}`),
+                  ),
                 )}
               </nav>
             ) : null}

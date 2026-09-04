@@ -76,7 +76,10 @@ export function Features({ items, variant = 'grid', columns = 3, ...sectionProps
       <Grid columns={columns} gap="lg">
         <Reveal stagger>
           {items.map((item, index) => (
-            <div key={index} className={cx('nn-features__item', variant === 'cards' && 'nn-features__item--card')}>
+            <div
+              key={index}
+              className={cx('nn-features__item', variant === 'cards' && 'nn-features__item--card')}
+            >
               {item.icon ? <div className="nn-features__icon">{item.icon}</div> : null}
               <h3 className="nn-features__title">{item.title}</h3>
               <p className="nn-features__description">{item.description}</p>

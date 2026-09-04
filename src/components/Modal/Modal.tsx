@@ -108,7 +108,11 @@ export function Modal({
     [disableBackdropClose, onClose],
   )
 
+  // The <dialog> click handler only implements click-outside-to-dismiss. Its
+  // keyboard equivalent is Escape, handled natively by <dialog> through the
+  // `cancel` listener above — jsx-a11y can't see that from the JSX.
   return (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
     <dialog
       ref={dialogRef}
       className={cx('nn-modal', `nn-modal--${size}`, className)}

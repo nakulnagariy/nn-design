@@ -2,17 +2,7 @@ import { forwardRef } from 'react'
 import type { CSSProperties, ElementType, HTMLAttributes, ReactNode } from 'react'
 import { cx } from '../../utils/cx'
 
-export type BoxSpace =
-  | 'none'
-  | '3xs'
-  | '2xs'
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | '3xl'
+export type BoxSpace = 'none' | '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
 
 export type BoxSurface = 'none' | 'surface-1' | 'surface-2' | 'surface-3' | 'primary-subtle'
 

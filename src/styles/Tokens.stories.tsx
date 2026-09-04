@@ -91,14 +91,11 @@ export const Colours: Story = {
       </Section>
 
       <Section title="Status">
-        {[
-          '--nn-color-success',
-          '--nn-color-warning',
-          '--nn-color-danger',
-          '--nn-color-info',
-        ].map((token) => (
-          <Swatch key={token} token={token} />
-        ))}
+        {['--nn-color-success', '--nn-color-warning', '--nn-color-danger', '--nn-color-info'].map(
+          (token) => (
+            <Swatch key={token} token={token} />
+          ),
+        )}
       </Section>
     </Stack>
   ),
@@ -107,20 +104,18 @@ export const Colours: Story = {
 export const Spacing: Story = {
   render: () => (
     <Stack gap="2xs">
-      {['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'].map(
-        (step) => (
-          <Row key={step} name={`--nn-space-${step}`}>
-            <div
-              style={{
-                height: '1rem',
-                width: `var(--nn-space-${step})`,
-                backgroundColor: 'var(--nn-color-primary)',
-                borderRadius: 'var(--nn-radius-xs)',
-              }}
-            />
-          </Row>
-        ),
-      )}
+      {['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'].map((step) => (
+        <Row key={step} name={`--nn-space-${step}`}>
+          <div
+            style={{
+              height: '1rem',
+              width: `var(--nn-space-${step})`,
+              backgroundColor: 'var(--nn-color-primary)',
+              borderRadius: 'var(--nn-radius-xs)',
+            }}
+          />
+        </Row>
+      ))}
     </Stack>
   ),
 }

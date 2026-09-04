@@ -79,7 +79,11 @@ export const Gradient: Story = {
   args: {
     variant: 'gradient',
     height: 'tall',
-    badge: <Badge tone="neutral" variant="solid">Now in beta</Badge>,
+    badge: (
+      <Badge tone="neutral" variant="solid">
+        Now in beta
+      </Badge>
+    ),
     title: 'Design and code, finally speaking the same language',
     description: 'Tokens in, production components out. No handoff document required.',
     actions: (

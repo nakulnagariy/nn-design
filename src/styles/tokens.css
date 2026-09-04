@@ -151,10 +151,10 @@
   --nn-radius-full: 9999px;
 
   /* ---- Typography --------------------------------------------------------- */
-  --nn-font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --nn-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
-    "Liberation Mono", monospace;
+  --nn-font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --nn-font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
   --nn-text-caption: 0.75rem;
   --nn-text-caption--line-height: 1rem;
@@ -203,7 +203,7 @@
    component that reaches for --nn-indigo-500 gets the same hue in both themes.
    ------------------------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-nn-theme="light"]) {
+  :root:not([data-nn-theme='light']) {
     --nn-color-surface-1: var(--nn-neutral-900);
     --nn-color-surface-2: var(--nn-neutral-800);
     --nn-color-surface-3: var(--nn-neutral-700);
@@ -238,7 +238,7 @@
   }
 }
 
-[data-nn-theme="dark"] {
+[data-nn-theme='dark'] {
   --nn-color-surface-1: var(--nn-neutral-900);
   --nn-color-surface-2: var(--nn-neutral-800);
   --nn-color-surface-3: var(--nn-neutral-700);

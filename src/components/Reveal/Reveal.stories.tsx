@@ -66,15 +66,17 @@ export const Animations: Story = {
       <Text tone="muted" size="sm">
         Each block uses a different `animation`. Scroll slowly to compare.
       </Text>
-      {(['fade', 'slide-up', 'slide-left', 'slide-right', 'scale', 'blur'] as const).map((animation) => (
-        <Reveal key={animation} animation={animation} repeat>
-          <Box background="surface-2" padding="lg" radius="lg" border>
-            <Text mono weight="medium">
-              {animation}
-            </Text>
-          </Box>
-        </Reveal>
-      ))}
+      {(['fade', 'slide-up', 'slide-left', 'slide-right', 'scale', 'blur'] as const).map(
+        (animation) => (
+          <Reveal key={animation} animation={animation} repeat>
+            <Box background="surface-2" padding="lg" radius="lg" border>
+              <Text mono weight="medium">
+                {animation}
+              </Text>
+            </Box>
+          </Reveal>
+        ),
+      )}
       <Spacer />
     </Stack>
   ),

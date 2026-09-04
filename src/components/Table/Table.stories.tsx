@@ -17,10 +17,38 @@ interface Row {
 }
 
 const ROWS: Row[] = [
-  { id: '1', name: 'Ada Lovelace', email: 'ada@acme.com', role: 'Owner', status: 'Active', spend: 1240 },
-  { id: '2', name: 'Grace Hopper', email: 'grace@acme.com', role: 'Admin', status: 'Active', spend: 860 },
-  { id: '3', name: 'Alan Turing', email: 'alan@acme.com', role: 'Member', status: 'Invited', spend: 0 },
-  { id: '4', name: 'Katherine Johnson', email: 'kj@acme.com', role: 'Member', status: 'Suspended', spend: 320 },
+  {
+    id: '1',
+    name: 'Ada Lovelace',
+    email: 'ada@acme.com',
+    role: 'Owner',
+    status: 'Active',
+    spend: 1240,
+  },
+  {
+    id: '2',
+    name: 'Grace Hopper',
+    email: 'grace@acme.com',
+    role: 'Admin',
+    status: 'Active',
+    spend: 860,
+  },
+  {
+    id: '3',
+    name: 'Alan Turing',
+    email: 'alan@acme.com',
+    role: 'Member',
+    status: 'Invited',
+    spend: 0,
+  },
+  {
+    id: '4',
+    name: 'Katherine Johnson',
+    email: 'kj@acme.com',
+    role: 'Member',
+    status: 'Suspended',
+    spend: 320,
+  },
 ]
 
 const STATUS_TONE = {
