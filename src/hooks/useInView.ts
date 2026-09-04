@@ -29,7 +29,12 @@ export interface UseInViewOptions {
  */
 export function useInView<T extends Element>(
   ref: RefObject<T | null>,
-  { threshold = 0.15, rootMargin = '0px 0px -10% 0px', once = true, disabled = false }: UseInViewOptions = {},
+  {
+    threshold = 0.15,
+    rootMargin = '0px 0px -10% 0px',
+    once = true,
+    disabled = false,
+  }: UseInViewOptions = {},
 ): boolean {
   const [inView, setInView] = useState(false)
   // Held in a ref so a re-render mid-animation cannot re-arm an element that

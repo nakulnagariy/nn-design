@@ -111,7 +111,12 @@ export type { UseInViewOptions } from './hooks/useInView'
    Page blocks — full sections composed from the components above.
    ========================================================================== */
 export { Section } from './blocks/Section/Section'
-export type { SectionAlign, SectionProps, SectionSpacing, SectionTone } from './blocks/Section/Section'
+export type {
+  SectionAlign,
+  SectionProps,
+  SectionSpacing,
+  SectionTone,
+} from './blocks/Section/Section'
 
 export { Header } from './blocks/Header/Header'
 export type { HeaderLink, HeaderProps, HeaderVariant } from './blocks/Header/Header'

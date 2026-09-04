@@ -4,13 +4,7 @@ import { cx } from '../../utils/cx'
 import { useInView } from '../../hooks/useInView'
 
 export type RevealAnimation =
-  | 'fade'
-  | 'slide-up'
-  | 'slide-down'
-  | 'slide-left'
-  | 'slide-right'
-  | 'scale'
-  | 'blur'
+  'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'scale' | 'blur'
 
 export interface RevealProps extends HTMLAttributes<HTMLElement> {
   /** Element to render. Defaults to `div`. */

@@ -29,11 +29,46 @@ interface Deploy {
 }
 
 const DEPLOYS: Deploy[] = [
-  { id: '1', project: 'northwind-web', branch: 'main', author: 'Ada Lovelace', status: 'Ready', duration: '52s' },
-  { id: '2', project: 'northwind-api', branch: 'feat/billing', author: 'Grace Hopper', status: 'Building', duration: '—' },
-  { id: '3', project: 'northwind-docs', branch: 'main', author: 'Alan Turing', status: 'Ready', duration: '31s' },
-  { id: '4', project: 'northwind-web', branch: 'fix/nav', author: 'Katherine Johnson', status: 'Failed', duration: '18s' },
-  { id: '5', project: 'northwind-api', branch: 'main', author: 'Ada Lovelace', status: 'Ready', duration: '1m 04s' },
+  {
+    id: '1',
+    project: 'northwind-web',
+    branch: 'main',
+    author: 'Ada Lovelace',
+    status: 'Ready',
+    duration: '52s',
+  },
+  {
+    id: '2',
+    project: 'northwind-api',
+    branch: 'feat/billing',
+    author: 'Grace Hopper',
+    status: 'Building',
+    duration: '—',
+  },
+  {
+    id: '3',
+    project: 'northwind-docs',
+    branch: 'main',
+    author: 'Alan Turing',
+    status: 'Ready',
+    duration: '31s',
+  },
+  {
+    id: '4',
+    project: 'northwind-web',
+    branch: 'fix/nav',
+    author: 'Katherine Johnson',
+    status: 'Failed',
+    duration: '18s',
+  },
+  {
+    id: '5',
+    project: 'northwind-api',
+    branch: 'main',
+    author: 'Ada Lovelace',
+    status: 'Ready',
+    duration: '1m 04s',
+  },
 ]
 
 const STATUS_TONE = { Ready: 'success', Building: 'info', Failed: 'danger' } as const
@@ -139,7 +174,12 @@ export const Page: Story = {
         {/* Sidebar — plain primitives, no dedicated block. */}
         <Box as="aside" background="surface-2" padding="md" className="nn-dash__aside">
           <Stack gap="2xs">
-            <Text size="caption" tone="subtle" weight="semibold" style={{ padding: '0 0.5rem 0.25rem' }}>
+            <Text
+              size="caption"
+              tone="subtle"
+              weight="semibold"
+              style={{ padding: '0 0.5rem 0.25rem' }}
+            >
               WORKSPACE
             </Text>
             {NAV.map((item) => (
@@ -237,7 +277,9 @@ export const Page: Story = {
                     {
                       id: 'all',
                       label: 'All',
-                      content: <Table columns={COLUMNS} data={DEPLOYS} rowKey={(r) => r.id} hoverable />,
+                      content: (
+                        <Table columns={COLUMNS} data={DEPLOYS} rowKey={(r) => r.id} hoverable />
+                      ),
                     },
                     {
                       id: 'failed',

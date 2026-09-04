@@ -34,7 +34,11 @@ export const Tones: Story = {
     <Stack gap="xs">
       <Link href="#a">Primary link</Link>
       <Text tone="muted">
-        An <Link href="#b" tone="inherit">inherit link</Link> inside muted body copy.
+        An{' '}
+        <Link href="#b" tone="inherit">
+          inherit link
+        </Link>{' '}
+        inside muted body copy.
       </Text>
       <Link href="#c" tone="muted">
         Muted link

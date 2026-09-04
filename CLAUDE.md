@@ -8,21 +8,28 @@ and `import { Button } from 'nn-design'`.
 
 ```bash
 npm run typecheck      # tsc --noEmit — run after any .ts/.tsx change
-npm run build          # clean + vite build (js/d.ts) + postcss (css). Run before claiming done.
+npm run lint           # eslint + prettier --check (run lint:fix to autofix)
+npm run test           # vitest (jsdom) + axe — colocated *.test.tsx
+npm run tokens:check   # tokens/tokens.json vs src/styles/tokens.css
+npm run build          # clean + vite (js/bundled d.ts) + postcss (css) + tokens. Run before claiming done.
+npm run lint:package   # publint + attw — the published-package gate
 npm run storybook      # dev catalogue on :6006 — the only place Tailwind compiles
-npm run build-storybook
 ```
 
+CI runs lint → typecheck → test → tokens:check → build → lint:package on every PR.
 `dist/` is git-ignored and rebuilt by CI on release; never hand-edit it or commit it.
 
 ## Layout
 
-- `src/styles/tokens.css` — the token layer. Everything else references it.
-- `src/components/<Name>/` — `<Name>.tsx`, `<Name>.css`, `<Name>.stories.tsx`. Primitives + form controls + feedback + data display.
+- `tokens/tokens.json` — **DTCG token source of truth.** `scripts/build-tokens.mjs` verifies `src/styles/tokens.css` against it and emits `dist/tokens.{json,js,d.ts}`. Change a token value in **both** files (the check enforces it).
+- `src/styles/tokens.css` — the compiled token layer (`:root` + dark + `@theme inline`). Everything else references it.
+- `src/components/<Name>/` — `<Name>.tsx`, `<Name>.css`, `<Name>.stories.tsx`, `<Name>.test.tsx`. Primitives + form controls + feedback + data display.
 - `src/blocks/<Name>/` — composed page sections (Hero, Pricing, Footer…), same file shape.
 - `src/internal/` — CSS shared by more than one component (`field.css`, `toggle.css`).
+- `src/test/setup.ts` — vitest setup (jest-dom, axe matchers, `<dialog>` + canvas shims for jsdom).
 - `src/styles/index.css` — the `@import` manifest that postcss flattens into `dist/styles.css`. Add new component CSS here.
 - `src/index.ts` — the public export barrel. New components/types go here.
+- `docs/theming.md`, `docs/rtl.md` — consumer-facing guides. Keep in sync with behaviour.
 
 ## Conventions
 
@@ -31,6 +38,9 @@ npm run build-storybook
 - Every component is wrapped by the consumer's `<Root>`, which carries `.nn-root` (base type, surface colour, `box-sizing`). Base styles are scoped under `.nn-root` — no global reset.
 - Dark mode: only the **semantic** tokens (`--nn-color-*`) are reassigned, three ways (`@media prefers-color-scheme`, `[data-nn-theme="dark"]`, `[data-nn-theme="light"]` opt-out). Raw ramps (`--nn-indigo-500`) stay fixed.
 - New spacing/size props on components resolve to `var(--nn-space-${v})` / `var(--nn-width-${v})` directly (see `Box.tsx`) — keep the prop union in sync with the tokens.
+- Component CSS uses **logical properties** (`padding-inline`, `inset-inline-end`, …) so `dir="rtl"` works with no extra stylesheet. Don't introduce `left`/`right`/`margin-left` etc. except where a physical side is the intent (e.g. `Tooltip side="left"`).
+- The bundle is marked `'use client'` (vite banner). Every export may use hooks; that's fine.
+- Each interactive component has a `*.test.tsx` (Testing Library + `axe`). Add one for new interactive components; assert the ARIA wiring and keyboard behaviour, not the class names.
 
 ## Token rules — do not break these
 

@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The wrapper every NN Design tree needs. It applies the `.nn-root` class carrying base typography, surface colour and box-sizing, and its `theme` prop selects the light or dark token set. Components rendered outside a `Root` keep their own styles but inherit the page\'s font and background, which usually looks broken.',
+          "The wrapper every NN Design tree needs. It applies the `.nn-root` class carrying base typography, surface colour and box-sizing, and its `theme` prop selects the light or dark token set. Components rendered outside a `Root` keep their own styles but inherit the page's font and background, which usually looks broken.",
       },
     },
   },

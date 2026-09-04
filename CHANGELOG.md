@@ -39,7 +39,27 @@ This project follows [semantic versioning](https://semver.org/) — while it is
 - Tailwind utilities for them via dedicated `--container-*` keys that don't
   collide with Tailwind's built-ins: `max-w-prose`, `max-w-narrow`,
   `max-w-content`, `max-w-page`, `max-w-wide`.
+- **Design tokens as data.** `tokens/tokens.json` (W3C DTCG format) is now the
+  source of truth; a build step verifies `tokens.css` against it. New exports:
+  `nn-design/tokens.json` (DTCG source) and `nn-design/tokens`
+  (`{ light, dark }` resolved value maps).
+- **`'use client'`** banner on the bundle, so it imports cleanly in React Server
+  Components / the Next.js App Router.
+- **RTL support** documented and exercised — a Direction toggle in Storybook,
+  `docs/rtl.md`; fixed the `Avatar` status dot to use a logical property.
+- **Theming guide** (`docs/theming.md`) and a Foundations → Theming story.
 - `CLAUDE.md` / `AGENTS.md` with the token-layer rules for AI assistants.
+
+### Tooling
+
+- ESLint (typescript-eslint, react-hooks, jsx-a11y, storybook) + Prettier.
+- Vitest + Testing Library + `vitest-axe` — 49 tests across the interactive
+  components (Accordion, Tabs, Dropdown, Modal, Switch, Button, Alert, Root).
+- `@storybook/addon-a11y` (axe in the Accessibility panel).
+- `publint` + `@arethetypeswrong/cli` gate the published package; declaration
+  files are now bundled into a single `index.d.ts` that resolves under
+  Node16/NodeNext ESM.
+- CI runs lint, tests, the token check, and the package check on every PR.
 
 ## 0.1.0
 

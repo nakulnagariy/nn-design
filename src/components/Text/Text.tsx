@@ -5,14 +5,7 @@ import { cx } from '../../utils/cx'
 export type TextSize = 'caption' | 'sm' | 'body' | 'body-lg'
 export type TextWeight = 'regular' | 'medium' | 'semibold' | 'bold'
 export type TextTone =
-  | 'default'
-  | 'muted'
-  | 'subtle'
-  | 'inverted'
-  | 'primary'
-  | 'success'
-  | 'warning'
-  | 'danger'
+  'default' | 'muted' | 'subtle' | 'inverted' | 'primary' | 'success' | 'warning' | 'danger'
 export type TextAlign = 'start' | 'center' | 'end'
 
 export interface TextProps extends HTMLAttributes<HTMLElement> {

@@ -38,7 +38,12 @@ export function Divider({
       role="separator"
       aria-orientation={orientation}
       aria-hidden={labelled ? undefined : 'true'}
-      className={cx('nn-divider', `nn-divider--${orientation}`, labelled && 'nn-divider--labelled', className)}
+      className={cx(
+        'nn-divider',
+        `nn-divider--${orientation}`,
+        labelled && 'nn-divider--labelled',
+        className,
+      )}
       {...rest}
     >
       {labelled ? <span className="nn-divider__label">{children}</span> : null}

@@ -18,11 +18,23 @@ jobs:
 
       - run: npm ci
 
+      - name: Lint
+        run: npm run lint
+
       - name: Typecheck
         run: npm run typecheck
 
+      - name: Test
+        run: npm run test
+
+      - name: Tokens in sync
+        run: npm run tokens:check
+
       - name: Build library
         run: npm run build
+
+      - name: Package is publishable
+        run: npm run lint:package
 
       - name: Build Storybook
         run: npm run build-storybook

@@ -121,8 +121,7 @@ export const TransparentOverHero: Story = {
           placeItems: 'center',
           marginTop: '-4rem',
           paddingTop: '4rem',
-          background:
-            'linear-gradient(135deg, var(--nn-indigo-600), var(--nn-sky-500))',
+          background: 'linear-gradient(135deg, var(--nn-indigo-600), var(--nn-sky-500))',
           color: '#fff',
         }}
       >

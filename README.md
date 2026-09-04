@@ -1,10 +1,17 @@
 # NN Design System
 
+[![npm](https://img.shields.io/npm/v/nn-design.svg)](https://www.npmjs.com/package/nn-design)
+[![npm downloads](https://img.shields.io/npm/dm/nn-design.svg)](https://www.npmjs.com/package/nn-design)
+[![CI](https://github.com/nakulnagariy/nn-design/actions/workflows/ci.yml/badge.svg)](https://github.com/nakulnagariy/nn-design/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/nn-design.svg)](./LICENSE)
+
 React components, design tokens, page blocks, and a Tailwind v4 preset.
 
 **27 components** and **12 page blocks** built on a single token layer, shipped
 as an ESM library with TypeScript declarations and one self-contained
-stylesheet. Zero runtime dependencies beyond React.
+stylesheet. Zero runtime dependencies beyond React. Works in the Next.js App
+Router (the bundle is marked `'use client'`), and supports light/dark and
+right-to-left out of the box.
 
 ```bash
 npm install nn-design
@@ -39,8 +46,21 @@ A whole marketing page, using nothing but blocks:
 
 ```tsx
 <Root>
-  <Header logo={<Logo />} links={nav} actions={<Button variant="primary">Get started</Button>} sticky />
-  <Hero title="Ship faster" description="…" actions={<Button variant="primary" size="lg">Start</Button>} />
+  <Header
+    logo={<Logo />}
+    links={nav}
+    actions={<Button variant="primary">Get started</Button>}
+    sticky
+  />
+  <Hero
+    title="Ship faster"
+    description="…"
+    actions={
+      <Button variant="primary" size="lg">
+        Start
+      </Button>
+    }
+  />
   <Features title="Why us" variant="cards" items={features} />
   <Pricing title="Pricing" tiers={tiers} />
   <FAQ title="Questions" items={faqs} />
@@ -52,7 +72,7 @@ A whole marketing page, using nothing but blocks:
 ## Two ways to style
 
 Components come pre-styled — you never write CSS for them. For the layout glue
-*between* components, the tokens are also exported as a Tailwind v4 preset:
+_between_ components, the tokens are also exported as a Tailwind v4 preset:
 
 ```tsx
 <div className="flex gap-4 p-6 bg-surface-2 rounded-lg">
@@ -72,18 +92,18 @@ directly as `var(--nn-space-md)`, `var(--nn-color-surface-2)`, and so on.
 
 ### The vocabulary
 
-| Namespace | Tokens | Tailwind utilities |
-|---|---|---|
-| Surfaces | `surface-1` `surface-2` `surface-3` | `bg-surface-2` |
-| Lines | `border` `border-strong` | `border-border` |
-| Text | `text` `text-muted` `text-subtle` `text-inverted` | `text-text-muted` |
-| Primary | `primary` `primary-hover` `primary-fg` `primary-subtle` | `bg-primary` `text-primary` |
-| Status | `success` `warning` `danger` `info` (each with `-subtle`, `-subtle-fg`) | `bg-danger-subtle` |
-| Spacing | `3xs` `2xs` `xs` `sm` `md` `lg` `xl` `2xl` `3xl` | `gap-[var(--nn-space-md)]` |
-| Width | `prose` `narrow` `content` `page` `wide` | `max-w-page` `max-w-prose` |
-| Radius | `xs` `sm` `md` `lg` `xl` `2xl` `full` | `rounded-lg` |
-| Type | `caption` `sm` `body` `body-lg` `h4` `h3` `h2` `h1` `display` | `text-body` `text-h1` |
-| Shadow | `sm` `md` `lg` | `shadow-md` |
+| Namespace | Tokens                                                                  | Tailwind utilities          |
+| --------- | ----------------------------------------------------------------------- | --------------------------- |
+| Surfaces  | `surface-1` `surface-2` `surface-3`                                     | `bg-surface-2`              |
+| Lines     | `border` `border-strong`                                                | `border-border`             |
+| Text      | `text` `text-muted` `text-subtle` `text-inverted`                       | `text-text-muted`           |
+| Primary   | `primary` `primary-hover` `primary-fg` `primary-subtle`                 | `bg-primary` `text-primary` |
+| Status    | `success` `warning` `danger` `info` (each with `-subtle`, `-subtle-fg`) | `bg-danger-subtle`          |
+| Spacing   | `3xs` `2xs` `xs` `sm` `md` `lg` `xl` `2xl` `3xl`                        | `gap-[var(--nn-space-md)]`  |
+| Width     | `prose` `narrow` `content` `page` `wide`                                | `max-w-page` `max-w-prose`  |
+| Radius    | `xs` `sm` `md` `lg` `xl` `2xl` `full`                                   | `rounded-lg`                |
+| Type      | `caption` `sm` `body` `body-lg` `h4` `h3` `h2` `h1` `display`           | `text-body` `text-h1`       |
+| Shadow    | `sm` `md` `lg`                                                          | `shadow-md`                 |
 
 As CSS custom properties these are prefixed `--nn-`: `--nn-color-surface-2`,
 `--nn-space-md`, `--nn-width-page`, `--nn-radius-lg`, `--nn-text-body`,
@@ -112,6 +132,27 @@ active theme just like component internals do.
 Only the semantic tokens change between themes. The raw ramps
 (`--nn-indigo-500`, `--nn-neutral-200`, …) stay fixed, so reaching for one gives
 the same hue in both.
+
+**Rebranding** is a token override on any ancestor — reassign
+`--nn-color-primary` and friends and the whole subtree follows, Tailwind
+utilities included. Full recipe in [docs/theming.md](./docs/theming.md).
+
+## Design tokens
+
+The token source of truth is [`tokens/tokens.json`](./tokens/tokens.json) in the
+[W3C DTCG](https://www.designtokens.org/) format. `npm run build:tokens` compiles
+it and verifies `src/styles/tokens.css` has not drifted. Consume it as:
+
+```ts
+import { light, dark } from 'nn-design/tokens' // resolved value maps
+import tokens from 'nn-design/tokens.json' // the DTCG source (Figma / Style Dictionary)
+```
+
+## Right-to-left
+
+Component CSS uses logical properties throughout, so setting `dir="rtl"` on
+`<html>` or `<Root>` flips layout with no extra stylesheet. Details and the few
+intentional exceptions: [docs/rtl.md](./docs/rtl.md).
 
 ## Components
 
@@ -153,20 +194,20 @@ It does not sort, paginate or virtualise; do that to `data` first.
 
 Full sections, configured with props rather than composed by hand:
 
-| Block | What it is |
-|---|---|
-| `Section` | The shell the others are built from — tone, spacing, width, heading group |
-| `Header` | Site header with responsive nav that collapses to a hamburger |
-| `Hero` | Opening section — `centered`, `split` or `gradient` |
-| `Features` | Feature list — `grid`, `cards` or `alternating` rows with media |
-| `Stats` | A row of headline figures |
-| `Pricing` | Pricing tiers with a featured plan |
-| `Testimonials` | Customer quotes — `grid` or `feature` |
-| `LogoCloud` | Customer logos, optionally as an infinite marquee |
-| `FAQ` | Accordion-backed questions |
-| `Newsletter` | Email capture with its own submitting/success/error states |
-| `CTA` | Closing ask — `plain`, `boxed` or `split` |
-| `Footer` | Site footer — `columns` sitemap or `simple` |
+| Block          | What it is                                                                |
+| -------------- | ------------------------------------------------------------------------- |
+| `Section`      | The shell the others are built from — tone, spacing, width, heading group |
+| `Header`       | Site header with responsive nav that collapses to a hamburger             |
+| `Hero`         | Opening section — `centered`, `split` or `gradient`                       |
+| `Features`     | Feature list — `grid`, `cards` or `alternating` rows with media           |
+| `Stats`        | A row of headline figures                                                 |
+| `Pricing`      | Pricing tiers with a featured plan                                        |
+| `Testimonials` | Customer quotes — `grid` or `feature`                                     |
+| `LogoCloud`    | Customer logos, optionally as an infinite marquee                         |
+| `FAQ`          | Accordion-backed questions                                                |
+| `Newsletter`   | Email capture with its own submitting/success/error states                |
+| `CTA`          | Closing ask — `plain`, `boxed` or `split`                                 |
+| `Footer`       | Site footer — `columns` sitemap or `simple`                               |
 
 Every block accepts the `Section` props (`tone`, `spacing`, `size`, `eyebrow`,
 `title`, `description`, `align`), so they stack consistently down a page.
@@ -196,14 +237,19 @@ shown immediately, so nothing is ever stranded hidden.
 ```bash
 npm install
 npm run storybook      # component workshop at :6006
-npm run build          # dist/index.js + index.d.ts + styles.css
+npm run build          # dist/index.js + index.d.ts + styles.css + tokens.*
 npm run typecheck
+npm run lint           # eslint + prettier --check
+npm run test           # vitest (jsdom) + axe on the interactive components
+npm run tokens:check   # tokens.json vs tokens.css
+npm run lint:package   # publint + are-the-types-wrong
 ```
 
-Storybook has a Theme switch in the toolbar that drives `Root`'s `theme` prop,
-so light and dark are exercised through the same code path an app uses.
-Tailwind runs in Storybook only — that's what verifies the preset really
-generates the documented utilities.
+Storybook has **Theme** and **Direction** toolbar switches that drive `Root`'s
+`theme` prop and the document `dir`, so light/dark and LTR/RTL are exercised
+through the same code path an app uses. The **Accessibility** panel runs axe on
+every story. Tailwind runs in Storybook only — that's what verifies the preset
+really generates the documented utilities.
 
 Under **Examples** you'll find five complete pages — Landing, Pricing,
 Dashboard, Settings and Sign in — assembled from the library. They are meant to
@@ -229,7 +275,7 @@ version. So ordinary commits don't need any special handling.
 
 **One-time setup:** add an npm **automation** token (npmjs.com → Access Tokens
 → Generate New Token → Automation) as a repository secret named `NPM_TOKEN`,
-under Settings → Secrets and variables → Actions. A classic *publish* token is
+under Settings → Secrets and variables → Actions. A classic _publish_ token is
 blocked by 2FA in CI and will fail.
 
 ### To GitHub Pages
@@ -242,7 +288,7 @@ blocked by 2FA in CI and will fail.
 3. Push to `main`, or run the workflow manually from the Actions tab.
 
 Step 2 has to happen before the first run, otherwise `configure-pages` fails
-with *"Get Pages site failed"* — a workflow cannot deploy to a Pages site that
+with _"Get Pages site failed"_ — a workflow cannot deploy to a Pages site that
 does not exist yet. The workflow passes `enablement: true`, which tries to
 create the site over the API, but that needs Pages to be permitted for the
 repository in the first place; the settings toggle is the reliable route.
@@ -252,12 +298,14 @@ subpath (`https://<user>.github.io/nn-design/`) with no extra configuration.
 
 ## What ships
 
-| File | Contents |
-|---|---|
-| `dist/index.js` | ESM bundle, React external (~58 kB) |
-| `dist/index.d.ts` | TypeScript declarations |
-| `dist/styles.css` | Tokens, base layer, components and blocks, flattened (~93 kB) |
-| `dist/tokens.css` | Just the token layer, if you want it standalone |
+| File               | Contents                                                      |
+| ------------------ | ------------------------------------------------------------- |
+| `dist/index.js`    | ESM bundle, React external, `'use client'`-marked (~59 kB)    |
+| `dist/index.d.ts`  | TypeScript declarations, bundled (Node16/NodeNext-safe)       |
+| `dist/styles.css`  | Tokens, base layer, components and blocks, flattened (~93 kB) |
+| `dist/tokens.css`  | Just the token layer, if you want it standalone               |
+| `dist/tokens.json` | The DTCG token source (`nn-design/tokens.json`)               |
+| `dist/tokens.js`   | Resolved light/dark value maps (`nn-design/tokens`)           |
 
 Styles are deliberately not imported from the JS, so importing one component
 never drags the whole stylesheet into your bundle.

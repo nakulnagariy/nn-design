@@ -11,10 +11,13 @@ export default defineConfig({
     react(),
     dts({
       include: ['src'],
-      // Stories and the demo content behind them are documentation, not API —
-      // without excluding them their declarations end up in the tarball.
-      exclude: ['src/**/*.stories.tsx', 'src/examples/**'],
-      insertTypesEntry: true,
+      // Stories, tests and the demo content behind them are documentation, not
+      // API — without excluding them their declarations end up in the tarball.
+      exclude: ['src/**/*.stories.tsx', 'src/**/*.test.{ts,tsx}', 'src/test/**', 'src/examples/**'],
+      // Bundle every declaration into a single index.d.ts. Keeps the published
+      // types resolvable under Node16/NodeNext ESM, which needs explicit file
+      // extensions that tsc does not add to relative re-exports.
+      rollupTypes: true,
     }),
   ],
   build: {
@@ -25,6 +28,12 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
+      output: {
+        // Every export is a client component (hooks, refs, effects). Marking the
+        // bundle keeps it importable from React Server Components / the Next.js
+        // App Router without the consumer adding their own wrapper.
+        banner: "'use client';",
+      },
     },
     sourcemap: true,
     minify: false,

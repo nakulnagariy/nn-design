@@ -161,7 +161,11 @@ export function Header({
                   key={link.href}
                   href={link.href}
                   aria-current={link.active ? 'page' : undefined}
-                  className={cx('nn-header__panel-link', 'nn-focusable', link.active && 'is-active')}
+                  className={cx(
+                    'nn-header__panel-link',
+                    'nn-focusable',
+                    link.active && 'is-active',
+                  )}
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}

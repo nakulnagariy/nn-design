@@ -33,7 +33,12 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(function Contai
   return (
     <Component
       ref={ref}
-      className={cx('nn-container', `nn-container--${size}`, flush && 'nn-container--flush', className)}
+      className={cx(
+        'nn-container',
+        `nn-container--${size}`,
+        flush && 'nn-container--flush',
+        className,
+      )}
       {...rest}
     >
       {children}

@@ -75,7 +75,10 @@ export const Controlled: Story = {
     return (
       <Stack gap="md">
         <Text size="sm" tone="muted">
-          Selected: <Text as="span" mono weight="medium">{tab}</Text>
+          Selected:{' '}
+          <Text as="span" mono weight="medium">
+            {tab}
+          </Text>
         </Text>
         <Tabs items={ITEMS} value={tab} onChange={setTab} aria-label="Account settings" />
       </Stack>

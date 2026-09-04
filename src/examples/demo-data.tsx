@@ -171,9 +171,14 @@ export const FAQS: FAQItem[] = [
   },
 ]
 
-export const LOGOS: ReactNode[] = ['Globex', 'Initech', 'Umbrella', 'Soylent', 'Hooli', 'Vehement'].map(
-  (name) => <span key={name}>{name}</span>,
-)
+export const LOGOS: ReactNode[] = [
+  'Globex',
+  'Initech',
+  'Umbrella',
+  'Soylent',
+  'Hooli',
+  'Vehement',
+].map((name) => <span key={name}>{name}</span>)
 
 export const FOOTER_COLUMNS: FooterColumn[] = [
   {

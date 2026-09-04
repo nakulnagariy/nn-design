@@ -61,13 +61,10 @@ export function Dropdown({ trigger, items, align = 'end', label, className }: Dr
   const itemRefs = useRef<(HTMLAnchorElement | HTMLButtonElement | null)[]>([])
   const menuId = useId()
 
-  const close = useCallback(
-    (returnFocus = true) => {
-      setOpen(false)
-      if (returnFocus) triggerRef.current?.focus()
-    },
-    [],
-  )
+  const close = useCallback((returnFocus = true) => {
+    setOpen(false)
+    if (returnFocus) triggerRef.current?.focus()
+  }, [])
 
   // Outside click. Bound on the document only while open, so a page full of
   // dropdowns does not accumulate listeners.
@@ -148,6 +145,7 @@ export function Dropdown({ trigger, items, align = 'end', label, className }: Dr
           id={menuId}
           role="menu"
           aria-label={label}
+          tabIndex={-1}
           className={cx('nn-dropdown__menu', `nn-dropdown__menu--${align}`)}
           onKeyDown={handleMenuKeyDown}
         >

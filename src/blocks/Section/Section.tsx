@@ -81,7 +81,9 @@ export function Section({
     >
       <Container size={size}>
         {heading ? animate ? <Reveal>{heading}</Reveal> : heading : null}
-        {children ? <div className={cx('nn-section__body', hasHeading && 'has-heading')}>{children}</div> : null}
+        {children ? (
+          <div className={cx('nn-section__body', hasHeading && 'has-heading')}>{children}</div>
+        ) : null}
       </Container>
     </Component>
   )
